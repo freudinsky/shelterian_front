@@ -16,7 +16,7 @@ export const AuthProv = ({ children }) => {
 		const shelter = async () => {
 			try {
 				const res = await axios.get(
-					`${import.meta.env.API_URL}/auth/shelterinfo`,
+					`${import.meta.env.VITE_API_URL}auth/shelterinfo`,
 					{ withCredentials: true }
 				);
 				if (res.data && res.data._id) {
