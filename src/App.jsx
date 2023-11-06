@@ -30,18 +30,19 @@ function App() {
 
 				//Browse
 				<Route path="/browse/:type" element={<Browse />} />
-        <Route path= "/detail/:type/:id" element={<DetailView/>}/>
+				<Route path="/detail/:type/:id" element={<DetailView />} />
 
 				//Admin Dashboard
 				<Route
 					path="/dashboard"
-					element={loggedIn ? <Dashboard /> : <Navigate to="/auth/signin" />}>
-            <Route path="" element={<AdminOverview/>}/>
-            <Route path="/new/:type" element={<NewAnimal/>}/>
-            <Route path="/edit/:type/:id" element={<EditView/>}/>
-            <Route path="/account" element={<AccountEdit/>}/>
-          </Route>
-
+					element={loggedIn ? <Dashboard /> : <Navigate to="/auth/signin" />}
+				>
+					<Route path="" element={<AdminOverview />} />
+					<Route path="/new/:type" element={<NewAnimal />} />
+					<Route path="/edit/:type/:id" element={<EditView />} />
+					<Route path="/account" element={<AccountEdit />} />
+				</Route>
+        
 				// 404 Handling
 				<Route path="*" element={<Navigate to="/404" />} />
 				<Route path="/404" element={<NotFound />} />

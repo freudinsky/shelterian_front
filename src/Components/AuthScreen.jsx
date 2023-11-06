@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import { Outlet } from "react-router-dom";
 
 function AuthScreen() {
-  return (
-    <div>AuthScreen</div>
-  )
+	return (
+		<>
+			<Outlet />
+		</>
+	);
 }
 
-export default AuthScreen
+export default AuthScreen;
