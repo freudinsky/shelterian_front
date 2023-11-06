@@ -35,7 +35,7 @@ function AuthBtn() {
 					</div>
 				) : (
 					<Button variant="solid" size="md">
-						<Link to="/signin">Login</Link>
+						<Link to="/auth/signin">Login</Link>
 					</Button>
 				)}
 			</div>
