@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 import { BrowserRouter } from 'react-router-dom'
-import { AuthProv } from './Context/AuthProv.js'
+import { AuthProv } from './Context/AuthProv.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
  <AuthProv>
