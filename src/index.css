@@ -7,3 +7,7 @@ body{
     max-width: 1600px;
     margin: auto;
 }
+.auth-screen{
+    min-height: 400px;
+    
+}

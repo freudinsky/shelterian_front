@@ -6,7 +6,7 @@ import Footer from "../Footer";
 function AuthScreen() {
 	return (
 		<>
-			<Outlet />
+			<div className="auth-screen"><Outlet /></div>
 		</>
 	);
 }

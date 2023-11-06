@@ -1,23 +1,23 @@
 import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
+import AccountEdit from "./Components/AdminDashboard/AccountEdit";
+import Dashboard from "./Components/AdminDashboard/Dashboard";
+import EditView from "./Components/AdminDashboard/EditView";
+import NewAnimal from "./Components/AdminDashboard/NewAnimal";
 import AuthScreen from "./Components/AuthComponents/AuthScreen";
 import SignIn from "./Components/AuthComponents/SignIn";
 import SignUp from "./Components/AuthComponents/SignUp";
-import Home from "./Components/Home";
-import NotFound from "./Components/NotFound";
 import Browse from "./Components/Browse/Browse";
-import { useAuth } from "./Context/AuthProv";
-import Dashboard from "./Components/AdminDashboard/Dashboard";
-import AdminOverview from "./Components/AdminDashboard/AdminOverview";
 import DetailView from "./Components/Browse/DetailView";
-import NewAnimal from "./Components/AdminDashboard/NewAnimal";
-import EditView from "./Components/AdminDashboard/EditView";
-import AccountEdit from "./Components/AdminDashboard/AccountEdit";
-import NavBar from "./Components/NavBar";
 import Footer from "./Components/Footer";
+import Home from "./Components/Home";
 import Imprint from "./Components/Legal/Imprint";
 import PrivacyNote from "./Components/Legal/PrivacyNote";
 import TnC from "./Components/Legal/TnC";
+import NavBar from "./Components/NavBar";
+import NotFound from "./Components/NotFound";
+import { useAuth } from "./Context/AuthProv";
+import Overview from "./Components/AdminDashboard/Overview"
 
 function App() {
 	const { loggedIn } = useAuth();
@@ -41,7 +41,7 @@ function App() {
 					path="/dashboard"
 					element={loggedIn ? <Dashboard /> : <Navigate to="/auth/signin" />}
 				>
-					<Route path="" element={<AdminOverview />} />
+					<Route path="" element={<Overview/>} />
 					<Route path="new/:type" element={<NewAnimal />} />
 					<Route path="edit/:type/:id" element={<EditView />} />
 					<Route path="account" element={<AccountEdit />} />
