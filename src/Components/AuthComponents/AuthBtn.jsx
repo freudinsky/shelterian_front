@@ -26,20 +26,35 @@ function AuthBtn() {
 			<div className="flex items-center">
 				{loggedIn ? (
 					<div className="flex justify-end items-center gap-4">
-						<Button variant="flat">
+						<Button
+							variant="flat"
+							radius="full"
+							className="bg-rose-800 text-white font-semibold"
+						>
 							<Link to="/dashboard">Dashboard</Link>
 						</Button>{" "}
-						<Button variant="bordered" size="md" onClick={handleLogout}>
+						<Button
+							variant="flat"
+							size="md"
+							onClick={handleLogout}
+							radius="full"
+							className="bg-neutral-500 text-white font-semibold"
+						>
 							Logout
 						</Button>
 					</div>
 				) : (
-					<Button variant="solid" size="md">
+					<Button
+						variant="solid"
+						size="md"
+						radius="full"
+						className="bg-rose-800 text-white font-semibold"
+					>
 						<Link to="/auth/signin">Login</Link>
 					</Button>
 				)}
 			</div>
-			<ToastContainer/>
+			<ToastContainer />
 		</>
 	);
 }

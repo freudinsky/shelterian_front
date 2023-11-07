@@ -18,9 +18,11 @@ import NavBar from "./Components/NavBar";
 import NotFound from "./Components/NotFound";
 import { useAuth } from "./Context/AuthProv";
 import Overview from "./Components/AdminDashboard/Overview"
+import DashOverv from "./Components/AdminDashboard/DashOverv"
+import { Spinner } from "@nextui-org/react";
 
 function App() {
-	const { loggedIn } = useAuth();
+	const { loading, loggedIn } = useAuth();
 
 	return (
 		<>
@@ -28,7 +30,18 @@ function App() {
 			<Routes>
 				<Route path="/" element={<Home />} />
 				//Auth
-				<Route path="/auth" element={!loggedIn? <AuthScreen /> : <Navigate to="/dashboard"/>}>
+				<Route
+					path="/auth"
+					element={
+						!loggedIn ? (
+							<AuthScreen />
+						) : loading ? (
+							<Spinner />
+						) : (
+							<Navigate to="/dashboard" />
+						)
+					}
+				>
 					<Route path="" element={<Navigate to="signin" />} />
 					<Route path="signin" element={<SignIn />} />
 					<Route path="signup" element={<SignUp />} />
@@ -39,10 +52,19 @@ function App() {
 				//Admin Dashboard
 				<Route
 					path="/dashboard"
-					element={loggedIn ? <Dashboard /> : <Navigate to="/auth/signin" />}
+					element={
+						loggedIn && !loading ? (
+							<Dashboard />
+						) : loading ? (
+							""
+						) : (
+							<Navigate to="/auth/signin" />
+						)
+					}
 				>
-					<Route path="" element={<Overview/>} />
-					<Route path="new/:type" element={<NewAnimal />} />
+					<Route path="" element={<DashOverv />} />
+					<Route path="myentries" element={<Overview />} />
+					<Route path="new" element={<NewAnimal />} />
 					<Route path="edit/:type/:id" element={<EditView />} />
 					<Route path="account" element={<AccountEdit />} />
 				</Route>

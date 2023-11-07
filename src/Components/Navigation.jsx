@@ -16,7 +16,11 @@ function Navigation() {
 				<div className="flex justify-start gap-8 items-center w-full">
 					<Dropdown>
 						<DropdownTrigger>
-							<Button className="font-semibold text-base" variant="light">
+							<Button
+								className="font-semibold text-base"
+								variant="light"
+								radius="full"
+							>
 								Tiersuche
 							</Button>
 						</DropdownTrigger>
@@ -34,15 +38,22 @@ function Navigation() {
 						</DropdownMenu>
 					</Dropdown>
 
-					<Button className="font-semibold text-base" variant="light">
+					<Button
+						className="font-semibold text-base"
+						variant="light"
+						radius="full"
+					>
 						Über Shelterian
 					</Button>
 
-					<Button className="font-semibold text-base" variant="light">
+					<Button
+						className="font-semibold text-base"
+						variant="light"
+						radius="full"
+					>
 						Für Tierheime
 					</Button>
 				</div>
-				
 			</div>
 		</>
 	);

@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Divider } from "@nextui-org/react";
 
 function Footer() {
 	return (
 		<>
-			<hr className="my-6 w-full" />
+			<Divider className="my-6 w-full" />
 			<div className="w-5/12 max-w-md">
 				<ul className="flex justify-start gap-6 font-semibold">
 					<li>
