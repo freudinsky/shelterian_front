@@ -1,12 +1,17 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import NavBar from "../NavBar";
-import Footer from "../Footer";
+import { useAuth } from "../../Context/AuthProv";
 
 function AuthScreen() {
+	const { loggedIn } = useAuth();
+
 	return (
 		<>
-			<div className="auth-screen"><Outlet /></div>
+			{ loggedIn ?
+				<div className="auth-screen">
+					<Outlet />
+				</div> : ""
+			}
 		</>
 	);
 }
