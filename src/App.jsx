@@ -28,7 +28,7 @@ function App() {
 			<Routes>
 				<Route path="/" element={<Home />} />
 				//Auth
-				<Route path="/auth" element={<AuthScreen />}>
+				<Route path="/auth" element={!loggedIn? <AuthScreen /> : <Navigate to="/dashboard"/>}>
 					<Route path="" element={<Navigate to="signin" />} />
 					<Route path="signin" element={<SignIn />} />
 					<Route path="signup" element={<SignUp />} />
