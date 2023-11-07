@@ -18,7 +18,6 @@ function NewAnimal() {
 		onDrop: (acceptedFiles) =>
 			setImages((prevImgs) => [...prevImgs, ...acceptedFiles]),
 	});
-console.log(images)
 	const defaultCharacteristics = {
 		childrenFriendly: false,
 		largePlace: false,

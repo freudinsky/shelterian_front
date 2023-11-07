@@ -16,7 +16,7 @@ function AdminNav() {
 							<Button
 								className="font-semibold text-base"
 								variant={
-									pathname === "/dashboard/myentries" ? "bordered" : "light"
+									pathname === "/dashboard/myentries" ? "solid" : "light"
 								}
 								radius="full"
 							>
@@ -28,7 +28,7 @@ function AdminNav() {
 						<Link to="new">
 							<Button
 								className="font-semibold text-base"
-								variant={pathname === "/dashboard/new" ? "bordered" : "light"}
+								variant={pathname === "/dashboard/new" ? "solid" : "light"}
 								radius="full"
 							>
 								Neuer Eintrag
