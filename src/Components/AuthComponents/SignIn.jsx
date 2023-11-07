@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../Context/AuthProv";
 import axios from "axios";
-import { toast, ToastContainer} from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 function SignIn() {
 	const [email, setEmail] = useState("");
@@ -22,15 +22,14 @@ function SignIn() {
 				{ withCredentials: true }
 			);
 			if (res.status === 200) {
-				setLoggedIn(true);
 				nav("/dashboard");
+				setLoggedIn(true);
 			}
 		} catch (err) {
 			setError(err.response.data.error);
 			toast.error(err.response.data.error || "Logindaten falsch");
 		}
 	};
-  
 
 	return (
 		<>
