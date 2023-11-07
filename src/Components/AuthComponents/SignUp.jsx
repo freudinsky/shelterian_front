@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -52,7 +53,7 @@ function SignUp() {
 			}
 		} catch (err) {
 			
-			toast.error(err || "Registrierung fehlgeschlagen.");
+			toast.error(err.message || "Registrierung fehlgeschlagen.");
 		}
 	};
 
