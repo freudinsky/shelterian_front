@@ -1,8 +1,7 @@
 import React from "react";
-import { useEffect } from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {toast} from "react-toastify"
+import { ToastContainer, toast } from "react-toastify";
 
 function SignUp() {
 	const [name, setName] = useState("");
@@ -11,32 +10,14 @@ function SignUp() {
 	const [city, setCity] = useState("");
 	const [postcode, setPostCode] = useState("");
 	const [country, setCountry] = useState("");
-	const [prefix, setPrefix] = useState("");
 	const [phone, setPhone] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPwd, setConfirmPwd] = useState("");
 	const [pwdSame, setPwdSame] = useState(true);
-	const [error, setError] = useState("");
 	const nav = useNavigate();
 
-	useEffect(() => {
-		switch (country) {
-			case "de":
-				setPrefix("+49");
-				break;
-			case "at":
-				setPrefix("+43");
-				break;
-			case "ch":
-				setPrefix("+41");
-				break;
-			default:
-				setPrefix("");
-		}
-	}, [country]);
-
-	const checkPwd = (e) => {
+	const checkPwd = () => {
 		if (confirmPwd) {
 			if (password === confirmPwd) {
 				setPwdSame(true);
@@ -49,33 +30,29 @@ function SignUp() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		if (pwdSame) {
-			try {
-				const res = await axios.post(
-					`${import.meta.env.VITE_API_URL}auth/signup`,
-					{
-						name,
-						refPerson,
-						address: street,
-						city,
-						postcode,
-						country,
-						phone,
-						email,
-						password,
-					},
-					{ withCredentials: true }
-				);
-				if (res.status === 201) {
-					toast.success("Erfolgreich registriert!");
-					nav("/auth/signin");
-				}
-			} catch (err) {
-				setError(err);
-				toast.error(err || "Registrierung fehlgeschlagen.");
+		try {
+			const res = await axios.post(
+				`${import.meta.env.VITE_API_URL}auth/signup`,
+				{
+					name,
+					refPerson,
+					address: street,
+					city,
+					postcode,
+					country,
+					phone,
+					email,
+					password,
+				},
+				{ withCredentials: true }
+			);
+			if (res.status === 201) {
+				toast.success("Erfolgreich registriert!");
+				nav("/auth/signin");
 			}
-		} else {
-			toast.error("Passwörter stimmen nicht überein!");
+		} catch (err) {
+			
+			toast.error(err || "Registrierung fehlgeschlagen.");
 		}
 	};
 
@@ -184,6 +161,7 @@ function SignUp() {
 					Jetzt einloggen.
 				</Link>
 			</div>
+			<ToastContainer />
 		</>
 	);
 }
