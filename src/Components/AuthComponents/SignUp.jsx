@@ -61,11 +61,12 @@ function SignUp() {
 
 	return (
 		<>
-			<p className="font-bold text-2xl text-center">Registrierung</p>
+			<h1 className="font-bold text-2xl text-center">Registrierung</h1>
 			<form className="flex flex-col" onSubmit={handleSubmit}>
 				<input
 					className="my-1 mt-10 border-solid border-1 border-slate-300 rounded-3xl h-10 indent-5"
 					type="text"
+					required
 					placeholder="Name Tierheim"
 					value={name}
 					onChange={(e) => setName(e.target.value)}
@@ -73,6 +74,7 @@ function SignUp() {
 				<input
 					className="my-1 border-solid border-1 border-slate-300 rounded-3xl h-10 indent-5"
 					type="text"
+					required
 					placeholder="Name Ansprechpartner"
 					value={refPerson}
 					onChange={(e) => setRefPerson(e.target.value)}
@@ -80,6 +82,7 @@ function SignUp() {
 				<input
 					className="my-1 border-solid border-1 border-slate-300 rounded-3xl h-10 indent-5"
 					type="text"
+					required
 					placeholder="Straße & Hausnummer"
 					value={street}
 					onChange={(e) => setStreet(e.target.value)}
@@ -88,6 +91,7 @@ function SignUp() {
 					<input
 						className="my-1 w-4/12 border-solid border-1 border-slate-300 rounded-3xl h-10 indent-5"
 						type="text"
+						required
 						placeholder="PLZ"
 						value={postcode}
 						onChange={(e) => setPostCode(e.target.value)}
@@ -95,6 +99,7 @@ function SignUp() {
 					<input
 						className="my-1 w-8/12 border-solid border-1 border-slate-300 rounded-3xl h-10 indent-5"
 						type="text"
+						required
 						placeholder="Stadt"
 						value={city}
 						onChange={(e) => setCity(e.target.value)}
@@ -104,6 +109,7 @@ function SignUp() {
 					className="my-1 border-solid border-1 border-slate-300 rounded-3xl h-10 indent-5"
 					type="select"
 					placeholder="Land"
+					required
 					value={country}
 					onChange={(e) => setCountry(e.target.value)}
 				>
@@ -118,6 +124,7 @@ function SignUp() {
 					className="my-1 w-full border-solid border-1 border-slate-300 rounded-full h-10 indent-5"
 					type="text"
 					placeholder="Telefonnummer"
+					required
 					value={phone}
 					onChange={(e) => setPhone(e.target.value)}
 				/>
@@ -125,6 +132,7 @@ function SignUp() {
 					className="my-1 border-solid border-1 border-slate-300 rounded-3xl h-10 indent-5"
 					type="email"
 					placeholder="E-Mail"
+					required
 					value={email}
 					onChange={(e) => setEmail(e.target.value)}
 				/>
@@ -133,6 +141,7 @@ function SignUp() {
 					type="password"
 					placeholder="Passwort"
 					value={password}
+					required
 					onChange={(e) => setPassword(e.target.value)}
 				/>
 				<input
@@ -146,6 +155,7 @@ function SignUp() {
 					value={confirmPwd}
 					onChange={(e) => setConfirmPwd(e.target.value)}
 					onBlur={checkPwd}
+					required
 				/>
 				<input
 					className="mt-1 bg-rose-800 text-white font-semibold px-7 py-1 rounded-3xl h-10"
@@ -159,7 +169,6 @@ function SignUp() {
 					Jetzt einloggen.
 				</Link>
 			</div>
-			<ToastContainer />
 		</>
 	);
 }

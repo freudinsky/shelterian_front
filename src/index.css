@@ -1,8 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-body{
+.not-selectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+html,body{
+    background-color: #c5a28731;
+    box-sizing: border-box;
+    min-height: 100vh;
+}
+#root{
     width: 90%;
     max-width: 1600px;
     margin: auto;
@@ -10,4 +22,16 @@ body{
 .auth-screen{
     min-height: 400px;
     
+}
+.form{
+    width: 80%;
+    max-width: 864px;
+    margin: auto;
+}
+.no-scrollbar{
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
 }

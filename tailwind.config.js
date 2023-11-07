@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-import {nextui} from "@nextui-org/react"
+import { nextui } from "@nextui-org/react";
 export default {
 	content: [
 		"./index.html",
@@ -9,6 +9,15 @@ export default {
 	theme: {
 		extend: {},
 	},
-	plugins: [nextui()],
+	plugins: [
+		nextui({
+			theme: {
+				extend: {
+					colors: {
+						accent: "#533745",
+					},
+				},
+			},
+		}),
+	],
 };
-

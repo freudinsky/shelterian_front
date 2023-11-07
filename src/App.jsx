@@ -17,9 +17,10 @@ import TnC from "./Components/Legal/TnC";
 import NavBar from "./Components/NavBar";
 import NotFound from "./Components/NotFound";
 import { useAuth } from "./Context/AuthProv";
-import Overview from "./Components/AdminDashboard/Overview"
-import DashOverv from "./Components/AdminDashboard/DashOverv"
+import Overview from "./Components/AdminDashboard/Overview";
+import DashOverv from "./Components/AdminDashboard/DashOverv";
 import { Spinner } from "@nextui-org/react";
+import { ToastContainer } from "react-toastify";
 
 function App() {
 	const { loading, loggedIn } = useAuth();
@@ -77,6 +78,8 @@ function App() {
 				<Route path="/404" element={<NotFound />} />
 			</Routes>
 			<Footer />
+
+			<ToastContainer />
 		</>
 	);
 }

@@ -9,7 +9,7 @@ function SignIn() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState("");
-	const { setLoggedIn } = useAuth();
+	const { setLoggedIn, setLoading, setCookieSet } = useAuth();
 	const nav = useNavigate();
 
 	const handleSubmit = async (e) => {
@@ -22,23 +22,27 @@ function SignIn() {
 				{ withCredentials: true }
 			);
 			if (res.status === 200) {
+				setCookieSet(Date.now());
 				nav("/dashboard");
 				setLoggedIn(true);
+				setLoading(false)
+				
 			}
 		} catch (err) {
-			setError(err.response.data.error);
-			toast.error(err.response.data.error || "Logindaten falsch!");
+			setError(err.response.error);
+			toast.error(err.response.error || "Logindaten falsch!");
 		}
 	};
 
 	return (
 		<>
-			<p className="font-bold text-2xl text-center">Login</p>
+			<h1 className="font-bold text-2xl text-center">Login</h1>
 			<form className="flex flex-col" onSubmit={handleSubmit}>
 				<input
 					className="my-1 mt-10 border-solid border-1 border-slate-300 rounded-3xl h-10 indent-5"
 					type="email"
 					placeholder="E-Mail"
+					required
 					value={email}
 					onChange={(e) => setEmail(e.target.value)}
 				/>
@@ -46,6 +50,7 @@ function SignIn() {
 					className="my-1 border-solid border-1 border-slate-300 rounded-3xl h-10 indent-5"
 					type="password"
 					placeholder="Passwort"
+					required
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}
 				/>
@@ -57,11 +62,13 @@ function SignIn() {
 			</form>
 			<div className="text-sm mt-10 text-center">
 				{"Noch kein Account? "}
-				<Link className="text-rose-800 font-semibold text-center" to="/auth/signup">
+				<Link
+					className="text-rose-800 font-semibold text-center"
+					to="/auth/signup"
+				>
 					Jetzt registrieren.
 				</Link>
 			</div>
-			<ToastContainer />
 		</>
 	);
 }

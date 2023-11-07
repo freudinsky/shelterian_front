@@ -1,9 +1,11 @@
-import React from 'react'
-import { Divider, Button } from '@nextui-org/react'
-import { Link } from 'react-router-dom';
+import { Button, Divider } from '@nextui-org/react';
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import SettingsIcon from './SettingsIcon';
 
 function AdminNav() {
+	const {pathname} = useLocation()
+
   return (
 		<>
 			<Divider className="mb-2" />
@@ -13,7 +15,9 @@ function AdminNav() {
 						<Link to="myentries">
 							<Button
 								className="font-semibold text-base"
-								variant="light"
+								variant={
+									pathname === "/dashboard/myentries" ? "bordered" : "light"
+								}
 								radius="full"
 							>
 								Meine Einträge
@@ -24,7 +28,7 @@ function AdminNav() {
 						<Link to="new">
 							<Button
 								className="font-semibold text-base"
-								variant="light"
+								variant={pathname === "/dashboard/new" ? "bordered" : "light"}
 								radius="full"
 							>
 								Neuer Eintrag
@@ -35,10 +39,14 @@ function AdminNav() {
 
 				<Link to="account" className="justify-self-right">
 					<Button
-						className="font-semibold bg-neutral-500 text-white"
+						className={
+							pathname === "/dashboard/account"
+								? "font-semibol bg-neutral-500 text-white"
+								: "font-semibol bg-rose-800 text-white"
+						}
 						variant="solid"
 						radius="full"
-                        startContent={<SettingsIcon/>}
+						startContent={<SettingsIcon />}
 					>
 						Account
 					</Button>
