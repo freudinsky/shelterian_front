@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
+
 function SignUp() {
 	const [name, setName] = useState("");
 	const [refPerson, setRefPerson] = useState("");
@@ -31,7 +32,7 @@ function SignUp() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		try {
+		if(pwdSame){try {
 			const res = await axios.post(
 				`${import.meta.env.VITE_API_URL}auth/signup`,
 				{
@@ -52,14 +53,15 @@ function SignUp() {
 				nav("/auth/signin");
 			}
 		} catch (err) {
-			
-			toast.error(err.message || "Registrierung fehlgeschlagen.");
+			toast.error(err.response.data.error || "Registrierung fehlgeschlagen.");
+		}}else{
+			toast.error("Passwörter müssen übereinstimmen!")
 		}
 	};
 
 	return (
 		<>
-			<p className="font-bold text-lg">Login</p>
+			<p className="font-bold text-2xl text-center">Registrierung</p>
 			<form className="flex flex-col" onSubmit={handleSubmit}>
 				<input
 					className="my-1 mt-10 border-solid border-1 border-slate-300 rounded-3xl h-10 indent-5"
@@ -108,14 +110,10 @@ function SignUp() {
 					<option value="" disabled>
 						Land auswählen
 					</option>
-					<option value="de">Deutschland</option>
-					<option value="at">Österreich</option>
-					<option value="ch">Schweiz</option>
+					<option value="DE">Deutschland</option>
+					<option value="AT">Österreich</option>
+					<option value="CH">Schweiz</option>
 				</select>
-				{/* <div className="flex justify-between gap-1 items-center">
-					<p className="px-2 h-10 font-semibold border-solid border-1 border-slate-300 rounded-t-full rounded-r-none rounded-b-full rounded-l-full">
-						{prefix}
-					</p> */}
 				<input
 					className="my-1 w-full border-solid border-1 border-slate-300 rounded-full h-10 indent-5"
 					type="text"
@@ -123,7 +121,6 @@ function SignUp() {
 					value={phone}
 					onChange={(e) => setPhone(e.target.value)}
 				/>
-				{/* </div> */}
 				<input
 					className="my-1 border-solid border-1 border-slate-300 rounded-3xl h-10 indent-5"
 					type="email"
@@ -151,14 +148,14 @@ function SignUp() {
 					onBlur={checkPwd}
 				/>
 				<input
-					className="mt-1 self-end bg-rose-800 text-white font-semibold px-7 py-1 rounded-3xl h-10"
+					className="mt-1 bg-rose-800 text-white font-semibold px-7 py-1 rounded-3xl h-10"
 					type="submit"
 					value="Registrieren"
 				/>
 			</form>
-			<div className="text-sm mt-10">
+			<div className="text-sm mt-10  text-center">
 				{"Schon registriert? "}
-				<Link className="text-rose-800 font-semibold" to="/auth/signin">
+				<Link className="text-rose-800 font-semibold " to="/auth/signin">
 					Jetzt einloggen.
 				</Link>
 			</div>

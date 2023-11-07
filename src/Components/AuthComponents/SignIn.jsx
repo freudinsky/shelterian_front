@@ -33,7 +33,7 @@ function SignIn() {
 
 	return (
 		<>
-			<p className="font-bold text-lg">Login</p>
+			<p className="font-bold text-2xl text-center">Login</p>
 			<form className="flex flex-col" onSubmit={handleSubmit}>
 				<input
 					className="my-1 mt-10 border-solid border-1 border-slate-300 rounded-3xl h-10 indent-5"
@@ -50,14 +50,14 @@ function SignIn() {
 					onChange={(e) => setPassword(e.target.value)}
 				/>
 				<input
-					className="mt-1 self-end bg-rose-800 text-white font-semibold px-7 py-1 rounded-3xl h-10"
+					className="mt-1 bg-rose-800 text-white font-semibold px-7 py-1 rounded-3xl h-10"
 					type="submit"
 					value="Einloggen"
 				/>
 			</form>
-			<div className="text-sm mt-10">
+			<div className="text-sm mt-10 text-center">
 				{"Noch kein Account? "}
-				<Link className="text-rose-800 font-semibold" to="/auth/signup">
+				<Link className="text-rose-800 font-semibold text-center" to="/auth/signup">
 					Jetzt registrieren.
 				</Link>
 			</div>
