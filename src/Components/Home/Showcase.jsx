@@ -48,7 +48,7 @@ function Showcase() {
 		<>
 			{!isLoading && dogs && cats ? (
 				<div>
-					<Divider className="my-4" />
+					
 					<h2 className="text-3xl font-bold my-8 pl-10">Tiere</h2>
 					<div className="max-w-screen-2xl mx-auto">
 					    <div className="bg-amber-950/60 rounded-3xl px-6 py-2 my-4 shadow-lg flex flex-col">
@@ -76,7 +76,7 @@ function Showcase() {
     						</Button>
     					</div>
 					</div>
-					<Divider className="my-4" />
+					
 				</div>
 			) : (
 				<Spinner />
