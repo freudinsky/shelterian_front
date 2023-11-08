@@ -6,10 +6,11 @@ import {
 	DropdownItem,
 	Button,
 } from "@nextui-org/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 function Navigation() {
+	const nav = useNavigate()
 	return (
 		<>
 			<div className="flex justify-between">
@@ -24,16 +25,20 @@ function Navigation() {
 								Tiersuche
 							</Button>
 						</DropdownTrigger>
-						<DropdownMenu aria-label="Static Actions">
-							<DropdownItem key="dogs">
-								<Link className="font-semibold text-base" to="/browse/dogs">
-									Hunde
-								</Link>
+						<DropdownMenu aria-label="Static Actions" onAction={(key) => nav(`/browse/${key}`)}>
+							<DropdownItem
+								aria-label="Static Actions"
+								className="font-semibold text-base"
+								key="dogs"
+							>
+								Hunde
 							</DropdownItem>
-							<DropdownItem key="cats">
-								<Link className="font-semibold text-base" to="/browse/cats">
-									Katzen
-								</Link>
+							<DropdownItem
+								aria-label="Static Actions"
+								className="font-semibold text-base"
+								key="cats"
+							>
+								Katzen
 							</DropdownItem>
 						</DropdownMenu>
 					</Dropdown>

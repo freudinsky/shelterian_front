@@ -11,11 +11,9 @@ export const AuthProv = ({ children }) => {
 	const [loggedIn, setLoggedIn] = useState(false);
 	const [shelterData, setShelterData] = useState({});
 	const [loading, setLoading] = useState(true);
-	const [cookieSet, setCookieSet] = useState(null);
 
 	useEffect(() => {
 		const shelter = async () => {
-			if (cookieSet === null || Date.now() - cookieSet > 600000) {
 				try {
 					const res = await axios.get(
 						`${import.meta.env.VITE_API_URL}auth/shelterinfo`,
@@ -34,7 +32,7 @@ export const AuthProv = ({ children }) => {
 				} finally {
 					setLoading(false);
 				}
-			}
+			
 		};
 		shelter();
 	}, []);
@@ -46,8 +44,6 @@ export const AuthProv = ({ children }) => {
 		setShelterData,
 		loading,
 		setLoading,
-		cookieSet,
-		setCookieSet,
 	};
 
 	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

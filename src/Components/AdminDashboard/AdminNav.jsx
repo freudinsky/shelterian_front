@@ -1,23 +1,21 @@
-import { Button, Divider } from '@nextui-org/react';
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import SettingsIcon from './SettingsIcon';
+import { Button, Divider } from "@nextui-org/react";
+import React from "react";
+import { Link, useLocation } from "react-router-dom";
+import SettingsIcon from "./SettingsIcon";
 
 function AdminNav() {
-	const {pathname} = useLocation()
+	const { pathname } = useLocation();
 
-  return (
+	return (
 		<>
-			<Divider className="mb-2" />
+			<Divider className="mb-4" />
 			<div className="flex justify-between items-center w-full">
 				<ul className="flex gap-3 justify-between items-center ">
 					<li>
-						<Link to="myentries">
+						<Link to="">
 							<Button
 								className="font-semibold text-base"
-								variant={
-									pathname === "/dashboard/myentries" ? "solid" : "light"
-								}
+								variant={pathname === "/dashboard" ? "solid" : "light"}
 								radius="full"
 							>
 								Meine Einträge
@@ -57,4 +55,4 @@ function AdminNav() {
 	);
 }
 
-export default AdminNav
+export default AdminNav;

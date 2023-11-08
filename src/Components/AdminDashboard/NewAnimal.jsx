@@ -2,7 +2,7 @@ import { Radio, RadioGroup, CheckboxGroup, Checkbox } from "@nextui-org/react";
 import React, { useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import axios from "axios";
-import {toast} from "react-toastify"
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 function NewAnimal() {
@@ -13,7 +13,7 @@ function NewAnimal() {
 	const [description, setDescription] = useState("");
 	const [images, setImages] = useState([]);
 	const [characteristics, setCharacteristics] = useState([]);
-  const nav = useNavigate()
+	const nav = useNavigate();
 	const { getRootProps, getInputProps } = useDropzone({
 		onDrop: (acceptedFiles) =>
 			setImages((prevImgs) => [...prevImgs, ...acceptedFiles]),
@@ -37,36 +37,40 @@ function NewAnimal() {
 		type ? (type === "dog" ? "dog" : "cat") : ""
 	}`;
 
-  
 	const handleSubmit = async (e) => {
-    e.preventDefault();
-    const data = {
-        name,
-        age,
-        breed,
-        description,
-        images,
-        characteristics: characteristicObject
-      }
-    const formData = new FormData()
-    for( const key in data){if (key === 'characteristics') {
-        for (const charKey in data.characteristics) {
-          formData.append(`characteristics.${charKey}`, data.characteristics[charKey]);
-        }
-      } else if (key === 'images') {
-        for (let i = 0; i < data.images.length; i++) {
-          formData.append('images[]', data.images[i]);
-        }
-      } else {
-        formData.append(key, data[key]);
-      }}
+		e.preventDefault();
+		const data = {
+			name,
+			age,
+			breed,
+			description,
+			images,
+			characteristics: characteristicObject,
+		};
+		const formData = new FormData();
+		for (const key in data) {
+			if (key === "characteristics") {
+				for (const charKey in data.characteristics) {
+					formData.append(
+						`characteristics.${charKey}`,
+						data.characteristics[charKey]
+					);
+				}
+			} else if (key === "images") {
+				for (let i = 0; i < data.images.length; i++) {
+					formData.append("images[]", data.images[i]);
+				}
+			} else {
+				formData.append(key, data[key]);
+			}
+		}
 
 		try {
-			const res = await axios.post(apiUrl,formData,{withCredentials:true});
-      if(res.status === 201){
-        toast.success("Erfolgreich angelegt.")
-        nav("/dashboard/myentries")
-      }
+			const res = await axios.post(apiUrl, formData, { withCredentials: true });
+			if (res.status === 201) {
+				toast.success("Erfolgreich angelegt.");
+				nav("/dashboard");
+			}
 		} catch (err) {
 			console.log(err);
 			toast.error(err);
@@ -172,14 +176,14 @@ function NewAnimal() {
 									onChange={setCharacteristics}
 									className="mb-4"
 								>
-									<Checkbox value="childrenFriendly">
-										Verträgt sich mit Kindern
-									</Checkbox>
 									<Checkbox value="catFriendly">
 										Verträgt sich mit {type === "cat" ? "anderen" : ""} Katzen
 									</Checkbox>
 									<Checkbox value="dogFriendly">
 										Verträgt sich mit {type === "dog" ? "anderen" : ""} Hunden
+									</Checkbox>
+									<Checkbox value="childrenFriendly">
+										Verträgt sich mit Kindern
 									</Checkbox>
 									{type === "dog" ? (
 										<>

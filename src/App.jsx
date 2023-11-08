@@ -1,26 +1,25 @@
+import { Spinner } from "@nextui-org/react";
 import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import AccountEdit from "./Components/AdminDashboard/AccountEdit";
 import Dashboard from "./Components/AdminDashboard/Dashboard";
 import EditView from "./Components/AdminDashboard/EditView";
 import NewAnimal from "./Components/AdminDashboard/NewAnimal";
+import Overview from "./Components/AdminDashboard/Overview";
 import AuthScreen from "./Components/AuthComponents/AuthScreen";
 import SignIn from "./Components/AuthComponents/SignIn";
 import SignUp from "./Components/AuthComponents/SignUp";
 import Browse from "./Components/Browse/Browse";
 import DetailView from "./Components/Browse/DetailView";
 import Footer from "./Components/Footer";
-import Home from "./Components/Home";
+import Home from "./Components/Home/Home";
 import Imprint from "./Components/Legal/Imprint";
 import PrivacyNote from "./Components/Legal/PrivacyNote";
 import TnC from "./Components/Legal/TnC";
 import NavBar from "./Components/NavBar";
 import NotFound from "./Components/NotFound";
 import { useAuth } from "./Context/AuthProv";
-import Overview from "./Components/AdminDashboard/Overview";
-import DashOverv from "./Components/AdminDashboard/DashOverv";
-import { Spinner } from "@nextui-org/react";
-import { ToastContainer } from "react-toastify";
 
 function App() {
 	const { loading, loggedIn } = useAuth();
@@ -63,8 +62,8 @@ function App() {
 						)
 					}
 				>
-					<Route path="" element={<DashOverv />} />
-					<Route path="myentries" element={<Overview />} />
+				
+					<Route path="" element={<Overview />} />
 					<Route path="new" element={<NewAnimal />} />
 					<Route path="edit/:type/:id" element={<EditView />} />
 					<Route path="account" element={<AccountEdit />} />
@@ -79,7 +78,7 @@ function App() {
 			</Routes>
 			<Footer />
 
-			<ToastContainer />
+			{/* <ToastContainer /> */}
 		</>
 	);
 }

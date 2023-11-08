@@ -35,3 +35,20 @@ html,body{
 .no-scrollbar::-webkit-scrollbar {
     display: none;
 }
+.gallery img {
+    max-height: 450px !important;
+}
+.gallery{
+    width: 800px !important;
+    height: 450px !important;
+}
+.tablea>div {
+    background-color: #9f1239;
+}
+.slidi label, .slidi output{
+color: white;
+font-weight: semi-bold;
+}
+.slidi output::after{
+    content: " km";
+}

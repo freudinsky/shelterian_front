@@ -9,7 +9,7 @@ import {
 	ModalContent,
 	useDisclosure,
 } from "@nextui-org/react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/AuthProv";
 import DeleteIcon from "./AdminDashboard/DeleteIcon";
@@ -42,10 +42,12 @@ function AnimCard({ animal, type }) {
 		}
 	};
 
+
 	useEffect(() => {
 		if (loggedIn && animal.shelter === shelterData._id) {
 			setAdmin(true);
 		}
+	
 	}, []);
 
 	return (
@@ -53,7 +55,7 @@ function AnimCard({ animal, type }) {
 			// isFooterBlurred
 			onPress={handlePress}
 			radius="lg"
-			className="border-none w-60 h-96 bg-amber-900 shadow-lg mt-6"
+			className="cardi border-none w-60 h-96 bg-amber-900 shadow-lg mt-6"
 		>
 			<Link to={`/detail/${type}/${animal._id}`} className="w-full h-4/5">
 				<img
@@ -108,7 +110,7 @@ function AnimCard({ animal, type }) {
 						</Modal>
 					</div>
 				) : (
-					""
+					<div className="w-2/5"></div>
 				)}
 			</CardFooter>
 		</Card>

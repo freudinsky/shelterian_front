@@ -3,15 +3,35 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../Context/AuthProv";
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 
 function SignIn() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState("");
-	const { setLoggedIn, setLoading, setCookieSet } = useAuth();
+	const { setLoggedIn, setLoading, setShelterData } = useAuth();
 	const nav = useNavigate();
-
+	
+	const shelter = async () => {
+		try {
+			const res = await axios.get(
+				`${import.meta.env.VITE_API_URL}auth/shelterinfo`,
+				{ withCredentials: true }
+			);
+			if (res.data && res.data._id) {
+				setLoggedIn(true);
+				setShelterData(res.data);
+			} else {
+				setLoggedIn(false);
+				setShelterData({});
+			}
+		} catch (e) {
+			setLoggedIn(false);
+			setShelterData({});
+		} finally {
+			setLoading(false);
+		}
+	};
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
@@ -22,11 +42,9 @@ function SignIn() {
 				{ withCredentials: true }
 			);
 			if (res.status === 200) {
-				setCookieSet(Date.now());
+				await shelter();
 				nav("/dashboard");
-				setLoggedIn(true);
-				setLoading(false)
-				
+				setLoading(false);
 			}
 		} catch (err) {
 			setError(err.response.error);
