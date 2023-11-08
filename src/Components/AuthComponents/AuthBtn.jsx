@@ -16,6 +16,7 @@ function AuthBtn() {
 				{ withCredentials: true }
 			);
 			setLoggedIn(false);
+			window.location.reload()
 		} catch (err) {
 			toast.error("Fehler beim Ausloggen.");
 		}
