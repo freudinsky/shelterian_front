@@ -47,7 +47,7 @@ function Overview() {
 				<Tab key="dogs" title="Hunde">
 					<div className="mt-0 mb-4 w-full max-w-screen-2xl mx-auto">
 						<h2 className="text-2xl font-bold ">Unsere Hunde</h2>
-						<div className="flex justify-start flex-wrap gap-x-4 gap-y-0 items-center w-fit">
+						<div className="flex py-4 justify-start flex-wrap gap-x-4 gap-y-0 items-center w-fit">
 							{myDogs.map((dog) => (
 								<AnimCard key={dog._id} animal={dog} type={"dog"} />
 							))}
@@ -57,7 +57,7 @@ function Overview() {
 				<Tab key="cats" title="Katzen">
 					<div className="mt-0 mb-4 w-full max-w-screen-2xl mx-auto">
 						<h2 className="text-2xl font-bold ">Unsere Katzen</h2>
-						<div className="flex justify-start flex-wrap gap-x-4 gap-y-0 items-center w-fit">
+						<div className="flex py-4 justify-start flex-wrap gap-x-4 gap-y-0 items-center w-fit">
 							{myCats.map((cat) => (
 								<AnimCard
 									key={cat._id}

@@ -1,6 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.hero{
+    background-image: url("https://res.cloudinary.com/dcbuuobgt/image/upload/v1699437999/Shelterian_Hero_ifuwe8.webp");
+}
 .not-selectable {
   -webkit-touch-callout: none;
   -webkit-user-select: none;

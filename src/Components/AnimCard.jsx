@@ -55,16 +55,16 @@ function AnimCard({ animal, type }) {
 			// isFooterBlurred
 			onPress={handlePress}
 			radius="lg"
-			className="cardi border-none w-60 h-96 bg-amber-900 shadow-lg mt-6"
+			className="cardi border-none w-52 h-72 bg-amber-900 shadow-lg"
 		>
-			<Link to={`/detail/${type}/${animal._id}`} className="w-full h-4/5">
+			<Link to={`/detail/${type}/${animal._id}`} className="w-full h-2/3">
 				<img
 					alt={animal.name}
 					className="object-cover object-center w-full h-full"
 					src={animal.images[0]}
 				/>
 			</Link>
-			<CardFooter className="pt-0 pb-2 px-6 flex h-1/5 flex-nowrap justify-center items-around">
+			<CardFooter className="pt-0 pb-2 px-6 flex h-1/3 flex-nowrap justify-center items-around">
 				<Link to={`/detail/${type}/${animal._id}`} className="w-3/5">
 					<div className="flex-col w-full">
 						<p className="text-lg text-white/80 text-left font-bold">{`${animal.name}, ${animal.age}`}</p>

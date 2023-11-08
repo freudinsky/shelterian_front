@@ -1,14 +1,14 @@
 import React from "react";
 import HeroSection from "./HeroSection";
+import HowWorks from "./HowWorks";
 import Showcase from "./Showcase";
-import Mission from "./Mission";
 
 function Home() {
 	return (
 		<>
 			<HeroSection />
 			<Showcase />
-			<Mission />
+			<HowWorks />
 		</>
 	);
 }

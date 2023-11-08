@@ -59,7 +59,7 @@ function Browse() {
 
 		const location = city ? `city=${city}&dist=${distance}&` : "";
 		setFilterQuery(`${location}${filterString}`);
-	}, [distance, city, filter]);
+	}, [distance, city, filter, type]);
 
 	useEffect(() => {
 		const animalFetch = async () => {
@@ -80,7 +80,7 @@ function Browse() {
 			}
 		};
 		animalFetch();
-	}, [filterQuery]);
+	}, [filterQuery, type]);
 
 	return (
 		<>
