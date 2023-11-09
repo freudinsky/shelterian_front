@@ -39,14 +39,14 @@ html,body{
     display: none;
 }
 .gallery img {
-    max-height: 450px !important;
+    max-height: 500px !important;
 }
 .gallery{
     width: 800px !important;
-    height: 450px !important;
+    height: 500px !important;
 }
 .tablea>div {
-    background-color: #9f1239;
+    background-color: #533745;
 }
 .slidi label, .slidi output{
 color: white;

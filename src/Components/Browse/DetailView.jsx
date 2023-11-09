@@ -8,6 +8,7 @@ import {
 	TableRow,
 	TableCell,
 	Chip,
+	Tooltip,
 } from "@nextui-org/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
@@ -19,7 +20,7 @@ import { format } from "date-fns";
 function DetailView() {
 	const [animal, setAnimal] = useState();
 	const [currentImageIndex, setCurrentImageIndex] = useState(0);
-	const [images, setImages] = useState()
+	const [images, setImages] = useState();
 	const { type, id } = useParams();
 
 	function forceUpdate() {
@@ -30,11 +31,58 @@ function DetailView() {
 		const chips = [];
 
 		const nameMap = {
-			largePlace: "🏡 Haus&Garten",
-			needsExperience: "🎓 Nur erfahrene Halter",
-			catFriendly: "🐈 Katzenfreundlich",
-			dogFriendly: "🐕 Hundefreundlich",
-			childrenFriendly: "🍼 Kinderfreundlich",
+			largePlace: (
+				<img
+					width="30"
+					height="30"
+					src="https://img.icons8.com/cute-clipart/64/deciduous-tree.png"
+					alt="deciduous-tree"
+				/>
+			),
+			needsExperience: (
+				<img
+					width="30"
+					height="30"
+					src="https://img.icons8.com/color/48/graduation-cap.png"
+					alt="graduation-cap"
+				/>
+			),
+			catFriendly: (
+				<img
+					width="30"
+					height="30"
+					src="https://img.icons8.com/cute-clipart/64/cat.png"
+					alt="cat"
+				/>
+			),
+			dogFriendly: (
+				<img
+					width="30"
+					height="30"
+					src="https://img.icons8.com/cute-clipart/64/dog.png"
+					alt="dog"
+				/>
+			),
+			childrenFriendly: (
+				<img
+					width="30"
+					height="30"
+					src="https://img.icons8.com/cute-clipart/64/baby.png"
+					alt="baby"
+				/>
+			),
+		};
+
+		const tooltipMap = {
+			largePlace: "Benötigt viel Platz - idealerweise Haus und Garten",
+			needsExperience: "Nur an erfahrene Hundehalter abzugeben.",
+			catFriendly: `Verträgt sich mit ${
+				type === "cat" ? "anderen" : ""
+			} Katzen`,
+			dogFriendly: `Verträgt sich mit ${
+				type === "dog" ? "anderen" : ""
+			} Hunden`,
+			childrenFriendly: "Verträgt sich mit Kindern.",
 		};
 
 		for (const [characteristic, value] of Object.entries(
@@ -43,14 +91,24 @@ function DetailView() {
 			if (characteristic !== "_id" && value) {
 				// Rename the property using the name map
 				const newCharacteristic = nameMap[characteristic];
+				const toolTip = tooltipMap[characteristic];
 
 				chips.push(
-					<Chip
-						key={newCharacteristic}
-						className="semibold bg-rose-900 text-white h-10"
+					<Tooltip
+						showArrow="true"
+						content={toolTip}
+						placement="top"
+						color="danger"
+						size="lg"
 					>
-						{newCharacteristic}
-					</Chip>
+						<Chip
+							key={newCharacteristic}
+							className="semibold bg-rose-950/30 text-white h-12"
+							radius="full"
+						>
+							{newCharacteristic}
+						</Chip>
+					</Tooltip>
 				);
 			}
 		}
@@ -67,20 +125,19 @@ function DetailView() {
 				if (res.status === 200 && res.data) {
 					setAnimal(res.data);
 					const images = res.data.images.map((url) => ({
-						original: url.replace("/upload/", "/upload/w_650,h_450,c_fill/"),
+						original: url.replace("/upload/", "/upload/w_750,h_500,c_fill/"),
 						thumbnail: url.replace("/upload/", "/upload/w_150/"),
 					}));
-					setImages(images)
+					setImages(images);
 					forceUpdate();
 				}
 			} catch (error) {}
 		};
-		
+
 		animalFetch();
-		
 	}, []);
 
-console.log(images)
+	console.log(images);
 	return (
 		<>
 			<div className="max-w-screen-lg mx-auto">
@@ -96,8 +153,8 @@ console.log(images)
 										showFullscreenButton={false}
 										showBullets={true}
 										// thumbnailPosition="right"
-										onThumbnailClick={(index) => setCurrentImageIndex(index)}
-										startIndex={currentImageIndex}
+										// onThumbnailClick={(index) => setCurrentImageIndex(index)}
+										// startIndex={currentImageIndex}
 										additionalClass="gallery"
 									/>
 								</div>
@@ -111,7 +168,7 @@ console.log(images)
 								<p>{animal?.description}</p>
 								<Divider className="my-4 max-w-screen-md mx-auto" />
 								<div className="flex justify-between gap-2 w-full">
-									<div className="w-1/2">
+									<div className="w-fit">
 										<Table
 											className="tablea text-white"
 											hideHeader
@@ -123,7 +180,7 @@ console.log(images)
 											</TableHeader>
 											<TableBody>
 												<TableRow key="1">
-													<TableCell className="font-bold w-1/3">
+													<TableCell className="font-bold w-28">
 														Tierheim:
 													</TableCell>
 													<TableCell className="text-left">
@@ -131,14 +188,14 @@ console.log(images)
 													</TableCell>
 												</TableRow>
 												<TableRow key="2">
-													<TableCell className="font-bold w-1/3">
+													<TableCell className="font-bold ">
 														Anschrift:
 													</TableCell>
 													<TableCell className="text-left">{`${animal.shelter.address}, ${animal.shelter.postcode} ${animal.shelter.city}`}</TableCell>
 												</TableRow>
 												{animal.shelter.phone ? (
 													<TableRow key="3">
-														<TableCell className="font-bold w-1/3">
+														<TableCell className="font-bold">
 															Telefon:
 														</TableCell>
 														<TableCell className="text-left">
@@ -149,9 +206,7 @@ console.log(images)
 													""
 												)}
 												<TableRow key="4">
-													<TableCell className="font-bold w-1/3">
-														E-Mail:
-													</TableCell>
+													<TableCell className="font-bold ">E-Mail:</TableCell>
 													<TableCell className="text-left">
 														<Link to={`mailto:${animal.shelter.email}`}>
 															{animal.shelter.email}
@@ -159,7 +214,7 @@ console.log(images)
 													</TableCell>
 												</TableRow>
 												<TableRow key="5">
-													<TableCell className="font-bold w-1/3">
+													<TableCell className="font-bold ">
 														Online seit:
 													</TableCell>
 													<TableCell className="text-left">
@@ -169,8 +224,10 @@ console.log(images)
 											</TableBody>
 										</Table>
 									</div>
-									<div className="flex gap-1 flex-wrap w-1/2 justify-around">
-										{renderChips()}
+									<div className="flex justify-center items-center w-2/5">
+										<div className="flex gap-3 flex-wrap justify-center h-fit items-center w-32">
+											{renderChips()}
+										</div>
 									</div>
 								</div>
 							</div>
