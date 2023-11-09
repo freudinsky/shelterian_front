@@ -62,7 +62,6 @@ function App() {
 						)
 					}
 				>
-				
 					<Route path="" element={<Overview />} />
 					<Route path="new" element={<NewAnimal />} />
 					<Route path="edit/:type/:id" element={<EditView />} />

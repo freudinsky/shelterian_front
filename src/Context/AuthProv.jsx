@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 const AuthContext = createContext();
 
@@ -11,6 +12,7 @@ export const AuthProv = ({ children }) => {
 	const [loggedIn, setLoggedIn] = useState(false);
 	const [shelterData, setShelterData] = useState({});
 	const [loading, setLoading] = useState(true);
+	const pathNow = useLocation()
 
 	useEffect(() => {
 		const shelter = async () => {

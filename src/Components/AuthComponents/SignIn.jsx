@@ -14,26 +14,26 @@ function SignIn() {
 	const { setLoggedIn, setLoading, setShelterData } = useAuth();
 	const nav = useNavigate();
 
-	const shelter = async () => {
-		try {
-			const res = await axios.get(
-				`${import.meta.env.VITE_API_URL}auth/shelterinfo`,
-				{ withCredentials: true }
-			);
-			if (res.data && res.data._id) {
-				setLoggedIn(true);
-				setShelterData(res.data);
-			} else {
-				setLoggedIn(false);
-				setShelterData({});
-			}
-		} catch (e) {
-			setLoggedIn(false);
-			setShelterData({});
-		} finally {
-			setLoading(false);
-		}
-	};
+	// const shelter = async () => {
+	// 	try {
+	// 		const res = await axios.get(
+	// 			`${import.meta.env.VITE_API_URL}auth/shelterinfo`,
+	// 			{ withCredentials: true }
+	// 		);
+	// 		if (res.data && res.data._id) {
+	// 			setLoggedIn(true);
+	// 			setShelterData(res.data);
+	// 		} else {
+	// 			setLoggedIn(false);
+	// 			setShelterData({});
+	// 		}
+	// 	} catch (e) {
+	// 		setLoggedIn(false);
+	// 		setShelterData({});
+	// 	} finally {
+	// 		setLoading(false);
+	// 	}
+	// };
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setLoad(true);
@@ -45,18 +45,22 @@ function SignIn() {
 					{ email, password },
 					{ withCredentials: true }
 				);
-				if (res.status === 200) {
-					await shelter();
+				if (res.status === 200 && res.data) {
+					// await shelter();
+					setShelterData(res.data)
+					setLoggedIn(true);
 					nav("/dashboard");
 					setLoading(false);
 					setLoad(false);
 				}
 			} catch (err) {
+				setLoggedIn(false);
 				setError(err.response.error);
 				toast.error(err.response.error || "Logindaten falsch!");
 				setLoad(false);
 			}
 		} else {
+			setLoggedIn(false);
 			toast.error("Bitte Email & Passwort eintragen.");
 			setLoad(false);
 		}

@@ -95,6 +95,7 @@ function DetailView() {
 
 				chips.push(
 					<Tooltip
+					key={characteristic}
 						showArrow="true"
 						content={toolTip}
 						placement="top"
@@ -125,8 +126,8 @@ function DetailView() {
 				if (res.status === 200 && res.data) {
 					setAnimal(res.data);
 					const images = res.data.images.map((url) => ({
-						original: url.replace("/upload/", "/upload/w_750,h_500,c_fill/"),
-						thumbnail: url.replace("/upload/", "/upload/w_150/"),
+						original: url.replace("/upload/", "/upload/q_auto:best/w_750/f_auto/"),
+						thumbnail: url.replace("/upload/", "/upload/w_150/f_auto/"),
 					}));
 					setImages(images);
 					forceUpdate();
@@ -137,7 +138,6 @@ function DetailView() {
 		animalFetch();
 	}, []);
 
-	console.log(images);
 	return (
 		<>
 			<div className="max-w-screen-lg mx-auto">
@@ -167,8 +167,8 @@ function DetailView() {
 								</h1>
 								<p>{animal?.description}</p>
 								<Divider className="my-4 max-w-screen-md mx-auto" />
-								<div className="flex justify-between gap-2 w-full">
-									<div className="w-fit">
+								<div className="flex justify-start gap-4 w-full">
+									<div className="w-3/5">
 										<Table
 											className="tablea text-white"
 											hideHeader
@@ -224,11 +224,11 @@ function DetailView() {
 											</TableBody>
 										</Table>
 									</div>
-									<div className="flex justify-center items-center w-2/5">
-										<div className="flex gap-3 flex-wrap justify-center h-fit items-center w-32">
+									
+										<div className="flex gap-2 flex-wrap w-2/5 justify-start h-full items-start ">
 											{renderChips()}
 										</div>
-									</div>
+									
 								</div>
 							</div>
 						</>

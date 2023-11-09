@@ -9,12 +9,6 @@ function Overview() {
 	const [myCats, setMyCats] = useState([]);
 	const { loggedIn, shelterData } = useAuth();
 
-	function forceCardUpdate() {
-		const cardComponent = ref.current.querySelector(".card-component");
-
-		cardComponent.forceUpdate();
-	}
-
 	useEffect(() => {
 		const fetchAnimals = async () => {
 			try {
@@ -32,7 +26,7 @@ function Overview() {
 		};
 		
 		fetchAnimals();
-	}, [myDogs, myCats]);
+	}, []);
 
 	return (
 		<>

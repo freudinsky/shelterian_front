@@ -19,6 +19,7 @@ import axios from "axios";
 
 function AnimCard({ animal, type }) {
 	const [admin, setAdmin] = useState(false);
+	const [image, setImage] = useState("")
 	const nav = useNavigate();
 	const { loggedIn, shelterData } = useAuth();
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -44,11 +45,16 @@ function AnimCard({ animal, type }) {
 
 
 	useEffect(() => {
+
+		const img = animal.images[0].replace("/upload/","/upload/q_auto:best/f_auto/")
+		setImage(img)
+
 		if (loggedIn && animal.shelter === shelterData._id) {
 			setAdmin(true);
 		}
 	
 	}, []);
+	
 
 	return (
 		<Card
@@ -61,7 +67,7 @@ function AnimCard({ animal, type }) {
 				<img
 					alt={animal.name}
 					className="object-cover object-center w-full h-full"
-					src={animal.images[0]}
+					src={image}
 				/>
 			</Link>
 			<CardFooter className="pt-0 pb-2 px-6 flex h-1/3 flex-nowrap justify-center items-around">

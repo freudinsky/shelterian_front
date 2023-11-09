@@ -3,10 +3,11 @@ import { useAuth } from "../../Context/AuthProv";
 import { Button } from "@nextui-org/react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function AuthBtn() {
 	const { loggedIn, setLoggedIn } = useAuth();
+	const nav = useNavigate()
 
 	const handleLogout = async () => {
 		try {
@@ -16,6 +17,7 @@ function AuthBtn() {
 				{ withCredentials: true }
 			);
 			setLoggedIn(false);
+			nav("/")
 			window.location.reload()
 		} catch (err) {
 			toast.error("Fehler beim Ausloggen.");
