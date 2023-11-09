@@ -2,8 +2,8 @@ import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-
+import { toast } from "react-toastify";
+import { Button } from "@nextui-org/react";
 
 function SignUp() {
 	const [name, setName] = useState("");
@@ -17,6 +17,7 @@ function SignUp() {
 	const [password, setPassword] = useState("");
 	const [confirmPwd, setConfirmPwd] = useState("");
 	const [pwdSame, setPwdSame] = useState(true);
+	const [loading, setLoad] = useState(false);
 	const nav = useNavigate();
 
 	const checkPwd = () => {
@@ -31,31 +32,47 @@ function SignUp() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		setLoad(true);
 
-		if(pwdSame){try {
-			const res = await axios.post(
-				`${import.meta.env.VITE_API_URL}auth/signup`,
-				{
-					name,
-					refPerson,
-					address: street,
-					city,
-					postcode,
-					country,
-					phone,
-					email,
-					password,
-				},
-				{ withCredentials: true }
-			);
-			if (res.status === 201) {
-				toast.success("Erfolgreich registriert!");
-				nav("/auth/signin");
+		if (
+			pwdSame &&
+			name &&
+			refPerson &&
+			street &&
+			city &&
+			postcode &&
+			country &&
+			phone &&
+			email
+		) {
+			try {
+				const res = await axios.post(
+					`${import.meta.env.VITE_API_URL}auth/signup`,
+					{
+						name,
+						refPerson,
+						address: street,
+						city,
+						postcode,
+						country,
+						phone,
+						email,
+						password,
+					},
+					{ withCredentials: true }
+				);
+				if (res.status === 201) {
+					toast.success("Erfolgreich registriert!");
+					setLoad(false);
+					nav("/auth/signin");
+				}
+			} catch (err) {
+				toast.error("Registrierung fehlgeschlagen.");
+				setLoad(false);
 			}
-		} catch (err) {
-			toast.error(err.response.data.error || "Registrierung fehlgeschlagen.");
-		}}else{
-			toast.error("Passwörter müssen übereinstimmen!")
+		} else {
+			toast.error("Passwörter müssen übereinstimmen!");
+			setLoad(false);
 		}
 	};
 
@@ -157,11 +174,13 @@ function SignUp() {
 					onBlur={checkPwd}
 					required
 				/>
-				<input
+				<Button
 					className="mt-1 bg-rose-800 text-white font-semibold px-7 py-1 rounded-3xl h-10"
-					type="submit"
-					value="Registrieren"
-				/>
+					onClick={handleSubmit}
+					isLoading={loading}
+				>
+					Registrieren
+				</Button>
 			</form>
 			<div className="text-sm mt-10  text-center">
 				{"Schon registriert? "}

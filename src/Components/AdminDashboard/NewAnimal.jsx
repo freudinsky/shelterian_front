@@ -4,6 +4,7 @@ import { useDropzone } from "react-dropzone";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { Button } from "@nextui-org/react";
 
 function NewAnimal() {
 	const [type, setType] = useState("");
@@ -13,6 +14,7 @@ function NewAnimal() {
 	const [description, setDescription] = useState("");
 	const [images, setImages] = useState([]);
 	const [characteristics, setCharacteristics] = useState([]);
+	const [loading, setLoad] = useState(false);
 	const nav = useNavigate();
 	const { getRootProps, getInputProps } = useDropzone({
 		onDrop: (acceptedFiles) =>
@@ -39,6 +41,7 @@ function NewAnimal() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		setLoad(true);
 		const data = {
 			name,
 			age,
@@ -65,15 +68,24 @@ function NewAnimal() {
 			}
 		}
 
-		try {
-			const res = await axios.post(apiUrl, formData, { withCredentials: true });
-			if (res.status === 201) {
-				toast.success("Erfolgreich angelegt.");
-				nav("/dashboard");
+		if (name && age && description) {
+			try {
+				const res = await axios.post(apiUrl, formData, {
+					withCredentials: true,
+				});
+				if (res.status === 201) {
+					toast.success("Erfolgreich angelegt.");
+					setLoad(false);
+					nav("/dashboard");
+				}
+			} catch (err) {
+				console.log(err);
+				toast.error(err);
+				setLoad(false);
 			}
-		} catch (err) {
-			console.log(err);
-			toast.error(err);
+		} else {
+			toast.error("Bitte alle Felder ausfüllen.");
+			setLoad(false);
 		}
 	};
 	const handleDeleteClick = (imgname) => {
@@ -232,11 +244,13 @@ function NewAnimal() {
 								""
 							)}
 						</div>
-						<input
-							type="submit"
-							value="Absenden"
+						<Button
 							className="mt-3 w-1/3 self-center bg-rose-800 text-white font-semibold px-7 py-1 rounded-3xl h-10"
-						/>
+							onClick={handleSubmit}
+							isLoading={loading}
+						>
+							Absenden
+						</Button>
 					</div>
 				</form>
 			</div>

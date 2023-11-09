@@ -3,15 +3,17 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../Context/AuthProv";
 import axios from "axios";
+import { Button } from "@nextui-org/react";
 import { toast } from "react-toastify";
 
 function SignIn() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState("");
+	const [loading, setLoad] = useState(false);
 	const { setLoggedIn, setLoading, setShelterData } = useAuth();
 	const nav = useNavigate();
-	
+
 	const shelter = async () => {
 		try {
 			const res = await axios.get(
@@ -34,21 +36,29 @@ function SignIn() {
 	};
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		setLoad(true);
 
-		try {
-			const res = await axios.post(
-				`${import.meta.env.VITE_API_URL}auth/signin`,
-				{ email, password },
-				{ withCredentials: true }
-			);
-			if (res.status === 200) {
-				await shelter();
-				nav("/dashboard");
-				setLoading(false);
+		if (email && password) {
+			try {
+				const res = await axios.post(
+					`${import.meta.env.VITE_API_URL}auth/signin`,
+					{ email, password },
+					{ withCredentials: true }
+				);
+				if (res.status === 200) {
+					await shelter();
+					nav("/dashboard");
+					setLoading(false);
+					setLoad(false);
+				}
+			} catch (err) {
+				setError(err.response.error);
+				toast.error(err.response.error || "Logindaten falsch!");
+				setLoad(false);
 			}
-		} catch (err) {
-			setError(err.response.error);
-			toast.error(err.response.error || "Logindaten falsch!");
+		} else {
+			toast.error("Bitte Email & Passwort eintragen.");
+			setLoad(false);
 		}
 	};
 
@@ -72,11 +82,18 @@ function SignIn() {
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}
 				/>
-				<input
+				<Button
+					className="mt-1 bg-rose-800 text-white font-semibold px-7 py-1 rounded-3xl h-10"
+					onClick={handleSubmit}
+					isLoading={loading}
+				>
+					Einloggen
+				</Button>
+				{/* <input
 					className="mt-1 bg-rose-800 text-white font-semibold px-7 py-1 rounded-3xl h-10"
 					type="submit"
 					value="Einloggen"
-				/>
+				/> */}
 			</form>
 			<div className="text-sm mt-10 text-center">
 				{"Noch kein Account? "}

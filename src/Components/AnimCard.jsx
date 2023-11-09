@@ -55,7 +55,7 @@ function AnimCard({ animal, type }) {
 			// isFooterBlurred
 			onPress={handlePress}
 			radius="lg"
-			className="cardi border-none w-52 h-72 bg-amber-900 shadow-lg"
+			className="cardi border-none w-52 h-72 my-2 bg-amber-900 shadow-lg"
 		>
 			<Link to={`/detail/${type}/${animal._id}`} className="w-full h-2/3">
 				<img

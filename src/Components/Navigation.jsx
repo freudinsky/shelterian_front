@@ -29,14 +29,14 @@ function Navigation() {
 							<DropdownItem
 								aria-label="Static Actions"
 								className="font-semibold text-base"
-								key="dogs"
+								key="dog"
 							>
 								Hunde
 							</DropdownItem>
 							<DropdownItem
 								aria-label="Static Actions"
 								className="font-semibold text-base"
-								key="cats"
+								key="cat"
 							>
 								Katzen
 							</DropdownItem>

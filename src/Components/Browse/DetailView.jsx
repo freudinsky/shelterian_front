@@ -19,6 +19,7 @@ import { format } from "date-fns";
 function DetailView() {
 	const [animal, setAnimal] = useState();
 	const [currentImageIndex, setCurrentImageIndex] = useState(0);
+	const [images, setImages] = useState()
 	const { type, id } = useParams();
 
 	function forceUpdate() {
@@ -65,18 +66,21 @@ function DetailView() {
 				);
 				if (res.status === 200 && res.data) {
 					setAnimal(res.data);
+					const images = res.data.images.map((url) => ({
+						original: url.replace("/upload/", "/upload/w_650,h_450,c_fill/"),
+						thumbnail: url.replace("/upload/", "/upload/w_150/"),
+					}));
+					setImages(images)
 					forceUpdate();
 				}
 			} catch (error) {}
 		};
+		
 		animalFetch();
+		
 	}, []);
 
-	const images = animal?.images.map((url) => ({
-		original: url.replace("/upload/", "/upload/w_650,h_450,c_fill/"),
-		thumbnail: url.replace("/upload/", "/upload/w_150/"),
-	}));
-
+console.log(images)
 	return (
 		<>
 			<div className="max-w-screen-lg mx-auto">
@@ -87,9 +91,11 @@ function DetailView() {
 								<div className="card-wrap">
 									<ReactImageGallery
 										items={images}
-										showPlayButton="false"
-										showThumbnails={true}
-										thumbnailPosition="right"
+										showPlayButton={false}
+										showThumbnails={false}
+										showFullscreenButton={false}
+										showBullets={true}
+										// thumbnailPosition="right"
 										onThumbnailClick={(index) => setCurrentImageIndex(index)}
 										startIndex={currentImageIndex}
 										additionalClass="gallery"
@@ -106,7 +112,11 @@ function DetailView() {
 								<Divider className="my-4 max-w-screen-md mx-auto" />
 								<div className="flex justify-between gap-2 w-full">
 									<div className="w-1/2">
-										<Table className="tablea text-white" hideHeader aria-label="table">
+										<Table
+											className="tablea text-white"
+											hideHeader
+											aria-label="table"
+										>
 											<TableHeader>
 												<TableColumn>Key</TableColumn>
 												<TableColumn>Value</TableColumn>

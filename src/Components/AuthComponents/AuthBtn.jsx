@@ -27,13 +27,15 @@ function AuthBtn() {
 			<div className="flex items-center">
 				{loggedIn ? (
 					<div className="flex justify-end items-center gap-4">
-						<Button
-							variant="flat"
-							radius="full"
-							className="bg-rose-800 text-white font-semibold"
-						>
-							<Link to="/dashboard">Dashboard</Link>
-						</Button>{" "}
+						<Link to="/dashboard">
+							<Button
+								variant="flat"
+								radius="full"
+								className="bg-rose-800 text-white font-semibold"
+							>
+								Dashboard
+							</Button>
+						</Link>{" "}
 						<Button
 							variant="flat"
 							size="md"
@@ -45,14 +47,16 @@ function AuthBtn() {
 						</Button>
 					</div>
 				) : (
-					<Button
-						variant="solid"
-						size="md"
-						radius="full"
-						className="bg-rose-800 text-white font-semibold"
-					>
-						<Link to="/auth/signin">Login</Link>
-					</Button>
+					<Link to="/auth/signin">
+						<Button
+							variant="solid"
+							size="md"
+							radius="full"
+							className="bg-rose-800 text-white font-semibold"
+						>
+							Login
+						</Button>
+					</Link>
 				)}
 			</div>
 			<ToastContainer />

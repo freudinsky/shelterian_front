@@ -7,9 +7,9 @@ function ShowcaseRow({animals, type}) {
     const {shelterData, loggedIn} = useAuth()
 
   return (
-		<div className="w-full max-w-screen-2xl mx-auto">
+		<div className="w-full mx-auto">
 
-			<div className="flex justify-start py-4 flex-wrap gap-x-3 gap-y-0 items-center w-fit">
+			<div className="flex justify-around py-4 gap-x-3 gap-y-0 items-center w-full">
 				{animArr.map((elem) => (
 					<AnimCard
 						key={elem._id}

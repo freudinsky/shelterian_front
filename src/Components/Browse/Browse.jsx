@@ -68,7 +68,7 @@ function Browse() {
 				const res = await axios.get(
 					`${
 						import.meta.env.VITE_API_URL
-					}data/${type}/filter?${filterQuery.toString()}`,
+					}data/${type}s/filter?${filterQuery.toString()}`,
 					{ withCredentials: true }
 				);
 				if (res.status === 200 && res.data) {
@@ -126,7 +126,7 @@ function Browse() {
 						<Checkbox className="my-0.5" value="chld">
 							Verträgt sich mit Kindern
 						</Checkbox>
-						{type === "dogs" ? (
+						{type === "dog" ? (
 							<>
 								<Checkbox className="my-0.5" value="lgplc">
 									Haus & Garten
@@ -149,12 +149,12 @@ function Browse() {
 				</div>
 				<div className="w-4/5 border-solid border-1 flex flex-col border-neutral-300 rounded-2xl p-6">
 					<h1 className="text-2xl font-bold">
-						{type === "dogs" ? "Hunde" : type === "cats" ? "Katzen" : ""}
+						{type === "dog" ? "Hunde" : type === "cat" ? "Katzen" : ""}
 					</h1>
 					{!isLoading && animals.length > 0 ? (
-						<div className="flex justify-start flex-wrap gap-x-4 gap-y-0 items-center w-fit">
+						<div className="flex justify-around flex-wrap gap-x-4 gap-y-0 items-center w-fit">
 							{animals.map((dog) => (
-								<AnimCard key={dog._id} animal={dog} type={"dog"} />
+								<AnimCard key={dog._id} animal={dog} type={type} />
 							))}
 						</div>
 					) : !isLoading ? (
