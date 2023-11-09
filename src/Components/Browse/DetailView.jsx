@@ -126,7 +126,7 @@ function DetailView() {
 				if (res.status === 200 && res.data) {
 					setAnimal(res.data);
 					const images = res.data.images.map((url) => ({
-						original: url.replace("/upload/", "/upload/q_auto:best/w_750/f_auto/"),
+						original: url.replace("/upload/", "/upload/q_auto/w_750/f_auto/"),
 						thumbnail: url.replace("/upload/", "/upload/w_150/f_auto/"),
 					}));
 					setImages(images);

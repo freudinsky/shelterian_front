@@ -47,7 +47,7 @@ function AnimCard({ animal, type }) {
 
 	useEffect(() => {
 
-		const img = animal.images[0].replace("/upload/","/upload/q_auto:best/f_auto/")
+		const img = animal.images[0].replace("/upload/","/upload/q_auto/f_auto/")
 		setImage(img)
 		const lowImg = animal.images[0].replace(
 			"/upload/",
