@@ -44,7 +44,6 @@ function AnimCard({ animal, type }) {
 		}
 	};
 
-
 	useEffect(() => {
 
 		const img = animal.images[0].replace("/upload/","/upload/q_auto/f_auto/")
@@ -65,15 +64,16 @@ function AnimCard({ animal, type }) {
 
 	return (
 		<Card
-			// isFooterBlurred
 			onPress={handlePress}
 			radius="lg"
-			className="cardi border-none w-52 h-72 my-2 bg-amber-900 shadow-lg"
+			className="cardi border-none w-52 h-72 my-2 bg-amber-800 shadow-lg"
 		>
 			<Link to={`/detail/${type}/${animal._id}`} className="w-full h-2/3">
-				<div className="object-cover object-center w-full h-full" style={imgStyle}>
+				<div
+					className="object-cover object-center w-full h-full"
+					style={imgStyle}
+				>
 					<img
-						alt={animal.name}
 						className="object-cover object-center w-full h-full"
 						src={image}
 						loading="lazy"
