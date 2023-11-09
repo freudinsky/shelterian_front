@@ -21,6 +21,7 @@ function DetailView() {
 	const [animal, setAnimal] = useState();
 	const [currentImageIndex, setCurrentImageIndex] = useState(0);
 	const [images, setImages] = useState();
+	// const [lowQualImg, setLowQualImg] = useState("");
 	const { type, id } = useParams();
 
 	function forceUpdate() {
@@ -89,7 +90,6 @@ function DetailView() {
 			animal.characteristics
 		)) {
 			if (characteristic !== "_id" && value) {
-				// Rename the property using the name map
 				const newCharacteristic = nameMap[characteristic];
 				const toolTip = tooltipMap[characteristic];
 
@@ -130,6 +130,15 @@ function DetailView() {
 						thumbnail: url.replace("/upload/", "/upload/w_150/f_auto/"),
 					}));
 					setImages(images);
+
+					/// For lazy load blur img later
+					// const lowImg = animal.images[0].replace(
+					// 	"/upload/",
+					// 	"/upload/w_10/e_blur:50/q_auto:low/f_auto/"
+					// );
+					// setLowQualImg(lowImg);
+					///
+
 					forceUpdate();
 				}
 			} catch (error) {}
@@ -137,6 +146,14 @@ function DetailView() {
 
 		animalFetch();
 	}, []);
+
+	/// For lazy load blur bg later
+	// const imgStyle = {
+	// 	backgroundImage: `url(${lowQualImg})`,
+	// 	backgroundSize: "cover",
+	// 	backgroundPosition: "center",
+	// };
+	///
 
 	return (
 		<>
@@ -146,7 +163,7 @@ function DetailView() {
 						<>
 							<div className="w-full flex justify-center">
 								<div className="card-wrap">
-									<ReactImageGallery
+									{<ReactImageGallery
 										items={images}
 										showPlayButton={false}
 										showThumbnails={false}
@@ -156,7 +173,7 @@ function DetailView() {
 										// onThumbnailClick={(index) => setCurrentImageIndex(index)}
 										// startIndex={currentImageIndex}
 										additionalClass="gallery"
-									/>
+									/>}
 								</div>
 							</div>
 

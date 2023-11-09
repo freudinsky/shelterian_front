@@ -47,10 +47,10 @@ function Showcase() {
 		<>
 			{!isLoading && dogs && cats ? (
 				<div>
-					<h2 className="text-3xl font-bold my-8 pl-10">Tiere</h2>
+					<h2 className="text-3xl text-amber-950 font-bold my-8 pl-10">Neuste Einträge</h2>
 					<div className="max-w-screen-2xl mx-auto">
-						<div className="bg-amber-950/60 rounded-3xl px-6 py-2 my-4 shadow-lg max-w-screen-2xl w-11/12 mx-auto flex flex-col">
-							<h2 className="text-2xl text-white mt-2 font-bold ">Hunde</h2>
+						<div className="bg-stone-400/50 rounded-3xl px-6 py-2 my-4 shadow-lg max-w-screen-2xl w-11/12 mx-auto flex flex-col">
+							<h2 className="text-2xl text-amber-950 mt-2 font-bold ">Hunde</h2>
 							<ShowcaseRow key={dogs} animals={dogs} type={"dog"} />
 							<Button
 								radius="full"
@@ -61,8 +61,8 @@ function Showcase() {
 								Zu den Hunden
 							</Button>
 						</div>
-						<div className="bg-amber-950/60 rounded-3xl px-6 py-2 my-4 shadow-lg max-w-screen-2xl w-11/12 mx-auto flex flex-col">
-							<h2 className="text-2xl mt-2 text-white font-bold">Katzen</h2>
+						<div className="bg-stone-400/50 rounded-3xl px-6 py-2 my-4 shadow-lg max-w-screen-2xl w-11/12 mx-auto flex flex-col">
+							<h2 className="text-2xl mt-2 text-amber-950 font-bold">Katzen</h2>
 							<ShowcaseRow key={cats} animals={cats} type={"cat"} />
 							<Button
 								radius="full"

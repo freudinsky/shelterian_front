@@ -4,7 +4,9 @@ import { Card, CardFooter } from "@nextui-org/react";
 function HowWorks() {
 	return (
 		<div>
-			<h1 className="text-3xl font-bold my-8 pl-10">Was ist Shelterian?</h1>
+			<h1 className="text-3xl font-bold text-amber-950 my-8 pl-10">
+				Was ist Shelterian?
+			</h1>
 			<div className="flex gap-4 justify-center">
 				<div className="w-1/2 flex justify-center">
 					<img

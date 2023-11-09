@@ -12,6 +12,7 @@ export const AuthProv = ({ children }) => {
 	const [loggedIn, setLoggedIn] = useState(false);
 	const [shelterData, setShelterData] = useState({});
 	const [loading, setLoading] = useState(true);
+	const [refresh,setRefresh] = useState(false)
 	const pathNow = useLocation()
 
 	useEffect(() => {
@@ -46,6 +47,8 @@ export const AuthProv = ({ children }) => {
 		setShelterData,
 		loading,
 		setLoading,
+		refresh,
+		setRefresh
 	};
 
 	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

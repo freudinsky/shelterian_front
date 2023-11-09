@@ -18,24 +18,27 @@ function Navigation() {
 					<Dropdown>
 						<DropdownTrigger>
 							<Button
-								className="font-semibold text-base"
+								className="font-semibold text-amber-950 text-base"
 								variant="light"
 								radius="full"
 							>
 								Tiersuche
 							</Button>
 						</DropdownTrigger>
-						<DropdownMenu aria-label="Static Actions" onAction={(key) => nav(`/browse/${key}`)}>
+						<DropdownMenu
+							aria-label="Static Actions"
+							onAction={(key) => nav(`/browse/${key}`)}
+						>
 							<DropdownItem
 								aria-label="Static Actions"
-								className="font-semibold text-base"
+								className="font-semibold text-amber-950 text-base"
 								key="dog"
 							>
 								Hunde
 							</DropdownItem>
 							<DropdownItem
 								aria-label="Static Actions"
-								className="font-semibold text-base"
+								className="font-semibold text-amber-950 text-base"
 								key="cat"
 							>
 								Katzen
@@ -44,7 +47,7 @@ function Navigation() {
 					</Dropdown>
 
 					<Button
-						className="font-semibold text-base"
+						className="font-semibold text-amber-950 text-base"
 						variant="light"
 						radius="full"
 					>
@@ -52,7 +55,7 @@ function Navigation() {
 					</Button>
 
 					<Button
-						className="font-semibold text-base"
+						className="font-semibold text-amber-950 text-base"
 						variant="light"
 						radius="full"
 					>

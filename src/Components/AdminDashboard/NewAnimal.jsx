@@ -96,7 +96,9 @@ function NewAnimal() {
 	return (
 		<div className="form">
 			<div className="container bg-slate-100 px-12 w-full my-8 border-slate-200 border-solid border-1  rounded-xl shadow-md shadow-slate-300 py-8">
-				<h1 className="font-bold text-2xl text-center">Neuer Eintrag</h1>
+				<h1 className="font-bold text-2xl text-amber-950 text-center">
+					Neuer Eintrag
+				</h1>
 				<form className="flex mt-4 w-full flex-wrap" onSubmit={handleSubmit}>
 					<RadioGroup
 						className="mb-6 pl-2"

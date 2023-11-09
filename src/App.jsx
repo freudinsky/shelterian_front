@@ -20,6 +20,7 @@ import TnC from "./Components/Legal/TnC";
 import NavBar from "./Components/NavBar";
 import NotFound from "./Components/NotFound";
 import { useAuth } from "./Context/AuthProv";
+import DashHome from "./Components/AdminDashboard/DashHome";
 
 function App() {
 	const { loading, loggedIn } = useAuth();
@@ -62,7 +63,10 @@ function App() {
 						)
 					}
 				>
-					<Route path="" element={<Overview />} />
+					{/* <Route path="" element={<DashHome />} /> */}
+					<Route path="" element={<Navigate to="entries" />} />
+
+					<Route path="entries" element={<Overview />} />
 					<Route path="new" element={<NewAnimal />} />
 					<Route path="edit/:type/:id" element={<EditView />} />
 					<Route path="account" element={<AccountEdit />} />

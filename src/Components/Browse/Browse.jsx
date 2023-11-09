@@ -148,7 +148,7 @@ function Browse() {
 					</Button> */}
 				</div>
 				<div className="w-4/5 border-solid border-1 flex flex-col border-neutral-300 rounded-2xl p-6">
-					<h1 className="text-2xl font-bold">
+					<h1 className="text-2xl text-amber-950 font-bold">
 						{type === "dog" ? "Hunde" : type === "cat" ? "Katzen" : ""}
 					</h1>
 					{!isLoading && animals.length > 0 ? (

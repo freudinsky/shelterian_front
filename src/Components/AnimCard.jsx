@@ -9,7 +9,7 @@ import {
 	ModalContent,
 	useDisclosure,
 } from "@nextui-org/react";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/AuthProv";
 import DeleteIcon from "./AdminDashboard/DeleteIcon";
@@ -20,8 +20,9 @@ import axios from "axios";
 function AnimCard({ animal, type }) {
 	const [admin, setAdmin] = useState(false);
 	const [image, setImage] = useState("")
+	const [lowQualImg, setLowQualImg] = useState("")
 	const nav = useNavigate();
-	const { loggedIn, shelterData } = useAuth();
+	const { loggedIn, shelterData, refresh, setRefresh } = useAuth();
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
 	const handlePress = () => nav(`detail/${type}/${animal._id}`);
@@ -33,7 +34,7 @@ function AnimCard({ animal, type }) {
 			);
 			if (res.status === 201) {
 				toast.success("Löschen erfolgreich!");
-				
+				setRefresh(!refresh)
 			} else {
 				console.log(res.error, res)
 				toast.error(res.error);
@@ -48,6 +49,11 @@ function AnimCard({ animal, type }) {
 
 		const img = animal.images[0].replace("/upload/","/upload/q_auto:best/f_auto/")
 		setImage(img)
+		const lowImg = animal.images[0].replace(
+			"/upload/",
+			"/upload/w_10/e_blur:50/q_auto:low/f_auto/"
+		);
+		setLowQualImg(lowImg)
 
 		if (loggedIn && animal.shelter === shelterData._id) {
 			setAdmin(true);
@@ -55,6 +61,7 @@ function AnimCard({ animal, type }) {
 	
 	}, []);
 	
+	const imgStyle = {backgroundImage: `url(${lowQualImg})`, backgroundSize: "cover", backgroundPosition: "center"}
 
 	return (
 		<Card
@@ -64,11 +71,14 @@ function AnimCard({ animal, type }) {
 			className="cardi border-none w-52 h-72 my-2 bg-amber-900 shadow-lg"
 		>
 			<Link to={`/detail/${type}/${animal._id}`} className="w-full h-2/3">
-				<img
-					alt={animal.name}
-					className="object-cover object-center w-full h-full"
-					src={image}
-				/>
+				<div className="object-cover object-center w-full h-full" style={imgStyle}>
+					<img
+						alt={animal.name}
+						className="object-cover object-center w-full h-full"
+						src={image}
+						loading="lazy"
+					/>
+				</div>
 			</Link>
 			<CardFooter className="pt-0 pb-2 px-6 flex h-1/3 flex-nowrap justify-center items-around">
 				<Link to={`/detail/${type}/${animal._id}`} className="w-3/5">
@@ -104,8 +114,10 @@ function AnimCard({ animal, type }) {
 											<Button
 												radius="full"
 												color="danger"
-												onPress={async()=>{await handleDelete();
-												onClose()}}
+												onPress={async () => {
+													await handleDelete();
+													onClose();
+												}}
 											>
 												Löschen
 											</Button>

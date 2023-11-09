@@ -12,10 +12,10 @@ function AdminNav() {
 			<div className="flex justify-between items-center w-full">
 				<ul className="flex gap-3 justify-between items-center ">
 					<li>
-						<Link to="">
+						<Link to="entries">
 							<Button
-								className="font-semibold text-base"
-								variant={pathname === "/dashboard" ? "solid" : "light"}
+								className="font-semibold text-amber-950 text-base"
+								variant={pathname === "/dashboard/entries" ? "solid" : "light"}
 								radius="full"
 							>
 								Meine Einträge
@@ -25,7 +25,7 @@ function AdminNav() {
 					<li>
 						<Link to="new">
 							<Button
-								className="font-semibold text-base"
+								className="font-semibold text-amber-950 text-base"
 								variant={pathname === "/dashboard/new" ? "solid" : "light"}
 								radius="full"
 							>
