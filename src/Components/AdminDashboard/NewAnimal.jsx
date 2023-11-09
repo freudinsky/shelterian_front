@@ -250,6 +250,7 @@ function NewAnimal() {
 							className="mt-3 w-1/3 self-center bg-rose-800 text-white font-semibold px-7 py-1 rounded-3xl h-10"
 							onClick={handleSubmit}
 							isLoading={loading}
+							type="submit"
 						>
 							Absenden
 						</Button>

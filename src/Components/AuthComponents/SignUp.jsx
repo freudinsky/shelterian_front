@@ -178,6 +178,7 @@ function SignUp() {
 					className="mt-1 bg-rose-800 text-white font-semibold px-7 py-1 rounded-3xl h-10"
 					onClick={handleSubmit}
 					isLoading={loading}
+					type="submit"
 				>
 					Registrieren
 				</Button>
