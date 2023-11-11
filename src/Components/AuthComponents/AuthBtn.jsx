@@ -2,7 +2,6 @@ import React from "react";
 import { useAuth } from "../../Context/AuthProv";
 import { Button } from "@nextui-org/react";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 
 function AuthBtn() {
@@ -61,7 +60,6 @@ function AuthBtn() {
 					</Link>
 				)}
 			</div>
-			<ToastContainer />
 		</>
 	);
 }

@@ -71,7 +71,7 @@ function SignUp() {
 				setLoad(false);
 			}
 		} else {
-			toast.error("Passwörter müssen übereinstimmen!");
+			toast.error("Bitte alle Felder ausfüllen!");
 			setLoad(false);
 		}
 	};
