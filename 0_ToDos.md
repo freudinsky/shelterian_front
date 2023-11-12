@@ -14,4 +14,4 @@
 ----------------------------------------------------------------------------------
 
 ## Done
-- Email validation & double opt-in (Nodemailer, Exchange -> add domain in MS365)
+- Email validation & double opt-in (GMail API, Google Workspace -> add domain in Google Workspace)
