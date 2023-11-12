@@ -39,11 +39,18 @@ html,body{
     display: none;
 }
 .gallery img {
-    max-height: 500px !important;
+    width: 750px !important;
+    height: 500px !important;
 }
 .gallery{
-    width: 800px !important;
+    width: 100% !important;
     height: 500px !important;
+}
+.image-gallery{
+    display: flex;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 500px !important;
 }
 .tablea>div {
     background-color: #533745;

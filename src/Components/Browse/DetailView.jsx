@@ -19,7 +19,6 @@ import { format } from "date-fns";
 
 function DetailView() {
 	const [animal, setAnimal] = useState();
-	const [currentImageIndex, setCurrentImageIndex] = useState(0);
 	const [images, setImages] = useState();
 	// const [lowQualImg, setLowQualImg] = useState("");
 	const { type, id } = useParams();
@@ -157,11 +156,11 @@ function DetailView() {
 
 	return (
 		<>
-			<div className="max-w-screen-lg mx-auto">
-				<div className="w-full flex-col justify-center">
+			<div className="w-full my-8">
+				<div className="w-full flex-col md:flex-row flex gap-10 justify-around items-center">
 					{animal ? (
 						<>
-							<div className="w-full flex justify-center">
+							<div className="w-3/5 flex justify-center">
 								<div className="card-wrap">
 									{<ReactImageGallery
 										items={images}
@@ -177,8 +176,8 @@ function DetailView() {
 								</div>
 							</div>
 
-							<Divider className="my-4 max-w-screen-md mx-auto" />
-							<div className="max-w-screen-md mx-auto">
+							<Divider className="my-4mx-auto md:hidden" />
+							<div className="w-fit max-w-2xl">
 								<h1 className="text-2xl font-bold text-left mb-4">
 									{animal?.name}
 								</h1>
