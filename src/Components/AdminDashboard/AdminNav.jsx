@@ -2,8 +2,9 @@ import { Button, Divider } from "@nextui-org/react";
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import SettingsIcon from "./SettingsIcon";
+import RequestEmailValidate from "./RequestEmailValidate";
 
-function AdminNav() {
+function AdminNav({shelterData}) {
 	const { pathname } = useLocation();
 
 	return (
@@ -50,6 +51,7 @@ function AdminNav() {
 					</Button>
 				</Link>
 			</div>
+			{!shelterData.mailValidated ? <RequestEmailValidate /> : ""}
 			{/* <Divider className="mt-2 mb-4" /> */}
 		</>
 	);

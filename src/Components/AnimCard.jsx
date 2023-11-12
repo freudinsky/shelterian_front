@@ -54,7 +54,7 @@ function AnimCard({ animal, type }) {
 		);
 		setLowQualImg(lowImg)
 
-		if (loggedIn && animal.shelter === shelterData._id) {
+		if (loggedIn && animal.shelter._id === shelterData._id) {
 			setAdmin(true);
 		}
 	

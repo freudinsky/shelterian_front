@@ -10,6 +10,7 @@
 - Responsiveness
 - Redesign
 - Context -> Redux for state management?
+- Password Validation -> strong PWs!
 
 ----------------------------------------------------------------------------------
 
