@@ -12,7 +12,7 @@ function Notvalidated({email}) {
 			<p className="my-8">
 				Leider ist bei der Bestätigung deiner E-Mail Adresse ein Fehler aufgetreten!
 			</p>
-			<Link to="/">
+			<Link className='w-fit' to="/">
 				<Button
 					variant="solid"
 					size="md"

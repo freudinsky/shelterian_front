@@ -10,7 +10,7 @@ function MailValidation() {
 	const [loading, setLoading] = useState(true);
   const [shelData, setShelData] = useState({})
 	const location = useLocation();
-	const query = new URLSearchParams(location.validate);
+	const query = new URLSearchParams(location.search);
 	const email = query.get("email");
 	const token = query.get("token");
 

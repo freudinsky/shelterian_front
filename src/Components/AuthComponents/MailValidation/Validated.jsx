@@ -6,7 +6,7 @@ function Validated({ email, data}) {
 	
 	return (
 		<>
-			{data.validated? 
+			{!data.validated? 
                 <>
                     <h1 className="font-bold text-2xl">
     				E-Mail Adresse erfolgreich bestätigt!
@@ -17,7 +17,7 @@ function Validated({ email, data}) {
     			<p className="mb-8">
     				Vielen Dank für das Bestätigen deiner E-Mail Adresse {email}!
     			</p>
-    			<Link to="/auth/signin">
+    			<Link className="w-fit" to="/auth/signin">
     				<Button
     					variant="solid"
     					size="md"
@@ -37,7 +37,7 @@ function Validated({ email, data}) {
     			<p className="mb-8">
     				Deine E-Mail Adresse wurde bereits bestätigt!
     			</p>
-    			<Link to="/auth/signin">
+    			<Link className="w-fit" to="/auth/signin">
     				<Button
     					variant="solid"
     					size="md"
