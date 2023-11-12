@@ -4,8 +4,7 @@ import AdminNav from "./AdminNav";
 import { useAuth } from "../../Context/AuthProv"; 
 
 function Dashboard() {
-	const {loading} = useAuth()
-
+	
 	return (
 		<>
 		

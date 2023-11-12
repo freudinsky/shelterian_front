@@ -13,7 +13,7 @@ import { toast } from "react-toastify";
 import AnimCard from "../AnimCard";
 
 function Browse() {
-  const [cities, setCities] = useState([]);
+	const [cities, setCities] = useState([]);
 	const [animals, setAnimals] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	const [filter, setFilter] = useState([]);
@@ -21,34 +21,35 @@ function Browse() {
 	const [distance, setDistance] = useState("5");
 	const [filterQuery, setFilterQuery] = useSearchParams();
 	const { type } = useParams();
-  
-  useEffect(() => {
-    const cityFetch = async () => {
-      try {
-        const res = await axios.post(
-          "https://countriesnow.space/api/v0.1/countries/cities", {"country": "germany"}
-        );
-        if(res.status === 200 && res.data){
-          setCities(res.data.data)
-        }
-      } catch (error) {
-        return
-      }
-    }
-    cityFetch()
-  },[]);
+
+	useEffect(() => {
+		const cityFetch = async () => {
+			try {
+				const res = await axios.post(
+					"https://countriesnow.space/api/v0.1/countries/cities",
+					{ country: "germany" }
+				);
+				if (res.status === 200 && res.data) {
+					setCities(res.data.data);
+				}
+			} catch (error) {
+				return;
+			}
+		};
+		cityFetch();
+	}, []);
 
 	useEffect(() => {
 		const defaultCharacteristics = {
-      chld: false,
+			chld: false,
 			lgplc: false,
 			catfr: false,
 			exp: false,
 			dogfr: false,
 		};
 		const characteristicObject = filter.reduce((obj, key) => {
-      if (defaultCharacteristics.hasOwnProperty(key)) {
-        obj[key] = true;
+			if (defaultCharacteristics.hasOwnProperty(key)) {
+				obj[key] = true;
 			}
 			return obj;
 		}, defaultCharacteristics);

@@ -21,6 +21,7 @@ import NavBar from "./Components/NavBar";
 import NotFound from "./Components/NotFound";
 import { useAuth } from "./Context/AuthProv";
 import DashHome from "./Components/AdminDashboard/DashHome";
+import MailValidation from "./Components/AuthComponents/MailValidation";
 
 function App() {
 	const { loading, loggedIn } = useAuth();
@@ -75,6 +76,8 @@ function App() {
 				<Route path="/imprint" element={<Imprint />} />
 				<Route path="/privacy" element={<PrivacyNote />} />
 				<Route path="/terms" element={<TnC />} />
+				// Validation
+				<Route path="/validation" element={<MailValidation/>}/>
 				// 404 Handling
 				<Route path="*" element={<Navigate to="/404" />} />
 				<Route path="/404" element={<NotFound />} />

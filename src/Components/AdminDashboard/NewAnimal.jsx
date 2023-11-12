@@ -1,10 +1,9 @@
-import { Radio, RadioGroup, CheckboxGroup, Checkbox } from "@nextui-org/react";
-import React, { useEffect, useState } from "react";
-import { useDropzone } from "react-dropzone";
+import { Button, Checkbox, CheckboxGroup, Radio, RadioGroup } from "@nextui-org/react";
 import axios from "axios";
-import { toast } from "react-toastify";
+import React, { useState } from "react";
+import { useDropzone } from "react-dropzone";
 import { useNavigate } from "react-router-dom";
-import { Button } from "@nextui-org/react";
+import { toast } from "react-toastify";
 
 function NewAnimal() {
 	const [type, setType] = useState("");

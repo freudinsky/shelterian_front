@@ -1,7 +1,6 @@
 import { Tab, Tabs } from "@nextui-org/react";
 import axios from "axios";
-import React, { useEffect, useRef, useState } from "react";
-import AnimCard from "../AnimCard";
+import React, { useEffect, useState } from "react";
 import { useAuth } from "../../Context/AuthProv";
 import EntryTab from "./OverviewTabs/EntryTab";
 
