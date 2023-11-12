@@ -64,7 +64,7 @@ function SignUp() {
 				if (res.status === 201) {
 					toast.success("Erfolgreich registriert!");
 					setLoad(false);
-					nav("/auth/signin");
+					nav(`/auth/confirmation?${email}`);
 				}
 			} catch (err) {
 				toast.error("Registrierung fehlgeschlagen.");

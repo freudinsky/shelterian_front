@@ -22,6 +22,7 @@ import NotFound from "./Components/NotFound";
 import { useAuth } from "./Context/AuthProv";
 import DashHome from "./Components/AdminDashboard/DashHome";
 import MailValidation from "./Components/AuthComponents/MailValidation";
+import SignupConfirmation from "./Components/AuthComponents/SignupConfirmation";
 
 function App() {
 	const { loading, loggedIn } = useAuth();
@@ -47,6 +48,7 @@ function App() {
 					<Route path="" element={<Navigate to="signin" />} />
 					<Route path="signin" element={<SignIn />} />
 					<Route path="signup" element={<SignUp />} />
+					<Route path="confirmation" element={<SignupConfirmation/>}/>
 				</Route>
 				//Browse
 				<Route path="/browse/:type" element={<Browse />} />

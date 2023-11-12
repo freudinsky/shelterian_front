@@ -1,34 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import { useAuth } from '../../../Context/AuthProv';
-import axios from 'axios';
+import React from 'react';
 import AnimCard from '../../AnimCard';
 
 function EntryTab({type, animals} ) {
-    // const [animals, setAnimals] = useState([]);
-    // const { refresh } = useAuth()
-		
-
-    // useEffect(() => {
-	// 	async function fetchAnimals() {
-	// 		try {
-	// 			const res = await axios.get(
-	// 				`${import.meta.env.VITE_API_URL}admin/myentries`,
-	// 				{ withCredentials: true }
-	// 			);
-	// 			if (res.status === 201 && res.data) {
-	// 				if(type === "dog"){
-    //                     setAnimals(res.data.dogs)
-    //                 }else if(type === "cat"){
-    //                     setAnimals(res.data.cats)
-    //                 }
-	// 			}
-	// 		} catch (error) {
-	// 			console.log(error);
-	// 		}
-	// 	}
-	// 	fetchAnimals();
-	// }, [refresh]);
-
   return (
 		<div className="mt-0 mb-4 w-full max-w-screen-2xl mx-auto">
 			<h2 className="text-2xl text-amber-950 font-bold ">Unsere Hunde</h2>

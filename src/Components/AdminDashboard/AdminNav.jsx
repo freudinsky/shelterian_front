@@ -51,7 +51,7 @@ function AdminNav({shelterData}) {
 					</Button>
 				</Link>
 			</div>
-			{!shelterData.mailValidated ? <RequestEmailValidate /> : ""}
+			{!shelterData.mailValidated ? <RequestEmailValidate shelterData={shelterData} /> : ""}
 			{/* <Divider className="mt-2 mb-4" /> */}
 		</>
 	);
