@@ -17,7 +17,7 @@ function SignUp() {
 	const [password, setPassword] = useState("");
 	const [confirmPwd, setConfirmPwd] = useState("");
 	const [pwdSame, setPwdSame] = useState(true);
-	const [pwdStrong, setPwdStrong] = useState();
+	const [pwdStrong, setPwdStrong] = useState(true);
 	const [loading, setLoad] = useState(false);
 	const nav = useNavigate();
 
