@@ -15,7 +15,7 @@ function NotFound() {
 				</h2>
 			</div>
 			<Button
-				className="bg-rose-800 rounded-full text-lg font-semibold mt-6"
+				className="bg-rose-800 text-white rounded-full text-lg font-semibold mt-6"
 				onClick={() => nav("/")}
 			>
 				Zurück zu Home
