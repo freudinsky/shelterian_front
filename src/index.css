@@ -1,6 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
 .hero{
     background-image: url("https://res.cloudinary.com/dcbuuobgt/image/upload/v1699437999/Shelterian_Hero_ifuwe8.webp");
 }
@@ -61,4 +63,38 @@ font-weight: semi-bold;
 }
 .slidi output::after{
     content: " km";
+}
+.ql-container.ql-snow {
+    height: auto;
+}
+.ql-editor {
+    height: 450px;
+    overflow-y: scroll;
+}
+
+.terms h1{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.terms h2{
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+.ql-indent-1{
+    margin-left: 30px;
+}
+.ql-indent-2{
+    margin-left: 60px;
+}
+.ql-indent-3{
+    margin-left: 90px;
+}
+.ql-indent-4{
+    margin-left: 120px;
+}
+.terms ul{
+    list-style: disc;
+}
+.terms ol{
+    list-style:decimal;
 }

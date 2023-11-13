@@ -6,6 +6,8 @@
 
 - Verification document upload on SignUp (maybe option to upload later?)
 - Implementation Adoption-Terms (Tooltip/Popover/Modal + RTF/MD Editor&Interpreter)
+    - MDX Editor
+    - Draft.js | Quill.js
 - Phone + Prefix
 - Browse -> Autocomplete City onChange (fetch Cities onChange>3chars & .map Autocomp-Options?)
 - Browse -> Search based on Sheltername?
@@ -23,3 +25,7 @@
 - Detail page -> gallery & details in row instead of col
 - Password Validation -> strong PWs!
 - Change backend error messages to german (for toastify)
+
+
+
+

@@ -1,9 +1,17 @@
+import {
+	Button,
+	Modal,
+	ModalContent,
+	ModalHeader,
+	Tooltip,
+	useDisclosure
+} from "@nextui-org/react";
 import axios from "axios";
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { Button, Tooltip } from "@nextui-org/react";
+import TermsEditor from "../AdminDashboard/AdoptionTerms/TermsEditor";
+import EditIcon from "../AdminDashboard/EditIcon";
 
 function SignUp() {
 	const [name, setName] = useState("");
@@ -19,6 +27,8 @@ function SignUp() {
 	const [pwdSame, setPwdSame] = useState(true);
 	const [pwdStrong, setPwdStrong] = useState(true);
 	const [loading, setLoad] = useState(false);
+	const [terms, setTerms] = useState();
+	const { isOpen, onOpen, onOpenChange } = useDisclosure();
 	const nav = useNavigate();
 
 	const strongPwdRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
@@ -42,7 +52,7 @@ function SignUp() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		checkPwd()
+		checkPwd();
 		setLoad(true);
 
 		if (
@@ -69,6 +79,7 @@ function SignUp() {
 						phone,
 						email,
 						password,
+						terms,
 					},
 					{ withCredentials: true }
 				);
@@ -157,7 +168,7 @@ function SignUp() {
 					onChange={(e) => setPhone(e.target.value)}
 				/>
 				<input
-					autocomplete="email"
+					autoComplete="email"
 					className="my-1 border-solid border-1 border-slate-300 rounded-3xl h-10 indent-5"
 					type="email"
 					placeholder="E-Mail"
@@ -173,7 +184,7 @@ function SignUp() {
 					}
 					type="password"
 					placeholder="Passwort"
-					autocomplete="new-password"
+					autoComplete="new-password"
 					value={password}
 					name="password"
 					required
@@ -215,7 +226,6 @@ function SignUp() {
 					""
 				)}
 				<input
-					autoComplete=""
 					className={
 						pwdSame
 							? "my-1 border-solid border-1 border-slate-300 rounded-3xl h-10 indent-5"
@@ -223,22 +233,55 @@ function SignUp() {
 					}
 					type="password"
 					placeholder="Passwort wiederholen"
-					autocomplete="new-password"
+					autoComplete="new-password"
 					value={confirmPwd}
 					onChange={(e) => setConfirmPwd(e.target.value)}
 					required
 				/>
-				{!pwdSame? <div className="flex items-center gap-1 mb-2 px-2">
-							<img
-								width="17"
-								height="17"
-								src="https://img.icons8.com/ios-glyphs/30/ef4444/info--v1.png"
-								alt="info--v1"
-							/>
-							<label className="text-sm text-red-500" for="password">
-								Passwörter müssen übereinstimmen.
-							</label>
-						</div> :""}
+				{!pwdSame ? (
+					<div className="flex items-center gap-1 mb-2 px-2">
+						<img
+							width="17"
+							height="17"
+							src="https://img.icons8.com/ios-glyphs/30/ef4444/info--v1.png"
+							alt="info--v1"
+						/>
+						<label className="text-sm text-red-500" for="password">
+							Passwörter müssen übereinstimmen.
+						</label>
+					</div>
+				) : (
+					""
+				)}
+				<Button
+					className="mt-1 bg-rose-600 mb-4 text-white font-semibold px-7 py-1 rounded-3xl h-10"
+					onClick={onOpen}
+				>
+					<EditIcon />
+					Vermittlungsbedingungen hinzufügen
+				</Button>
+				<Modal
+					size="3xl"
+					placement="auto"
+					isOpen={isOpen}
+					onOpenChange={onOpenChange}
+					className="h-fit"
+				>
+					<ModalContent>
+						{(onClose) => (
+						<>
+							<ModalHeader className="text-lg font-bold text-white h-1/6 bg-rose-900">
+								Vermittlungsbedingungen hinzufügen
+							</ModalHeader>
+								<TermsEditor
+									terms={terms}
+									setTerms={setTerms}
+									onClose={onClose}
+								/>
+						</>
+						)}
+					</ModalContent>
+				</Modal>
 				<Button
 					className="mt-1 bg-rose-800 text-white font-semibold px-7 py-1 rounded-3xl h-10"
 					onClick={handleSubmit}
@@ -254,6 +297,7 @@ function SignUp() {
 					Jetzt einloggen.
 				</Link>
 			</div>
+
 		</>
 	);
 }
