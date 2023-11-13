@@ -9,6 +9,7 @@ import {
 	TableCell,
 	Chip,
 	Tooltip,
+	Button,
 } from "@nextui-org/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
@@ -94,7 +95,7 @@ function DetailView() {
 
 				chips.push(
 					<Tooltip
-					key={characteristic}
+						key={characteristic}
 						showArrow="true"
 						content={toolTip}
 						placement="top"
@@ -162,17 +163,19 @@ function DetailView() {
 						<>
 							<div className="w-3/5 flex justify-center">
 								<div className="card-wrap">
-									{<ReactImageGallery
-										items={images}
-										showPlayButton={false}
-										showThumbnails={false}
-										showFullscreenButton={false}
-										showBullets={true}
-										// thumbnailPosition="right"
-										// onThumbnailClick={(index) => setCurrentImageIndex(index)}
-										// startIndex={currentImageIndex}
-										additionalClass="gallery"
-									/>}
+									{
+										<ReactImageGallery
+											items={images}
+											showPlayButton={false}
+											showThumbnails={false}
+											showFullscreenButton={false}
+											showBullets={true}
+											// thumbnailPosition="right"
+											// onThumbnailClick={(index) => setCurrentImageIndex(index)}
+											// startIndex={currentImageIndex}
+											additionalClass="gallery"
+										/>
+									}
 								</div>
 							</div>
 
@@ -240,11 +243,15 @@ function DetailView() {
 											</TableBody>
 										</Table>
 									</div>
-									
-										<div className="flex gap-2 flex-wrap w-2/5 justify-start h-full items-start ">
+
+									<div className="w-2/5 flex flex-col justify-around items-center">
+										<div className="flex gap-2 flex-wrap  justify-start h-fit items-start ">
 											{renderChips()}
 										</div>
-									
+										<Button className="w-fit rounded-full mx-auto mt-1 bg-rose-800 text-white font-semibold px-7 py-1 h-10">
+											Vermittlungsbedingungen
+										</Button>
+									</div>
 								</div>
 							</div>
 						</>

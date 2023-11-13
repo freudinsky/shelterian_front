@@ -43,7 +43,9 @@ html,body{
 .gallery img {
     width: 750px !important;
     height: 500px !important;
-}
+    padding-left: 1px !important;
+    padding-right: 1px !important;
+    }
 .gallery{
     width: 100% !important;
     height: 500px !important;
