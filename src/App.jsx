@@ -8,8 +8,10 @@ import EditView from "./Components/AdminDashboard/EditView";
 import NewAnimal from "./Components/AdminDashboard/NewAnimal";
 import Overview from "./Components/AdminDashboard/Overview";
 import AuthScreen from "./Components/AuthComponents/AuthScreen";
+import MailValidation from "./Components/AuthComponents/MailValidation";
 import SignIn from "./Components/AuthComponents/SignIn";
 import SignUp from "./Components/AuthComponents/SignUp";
+import SignupConfirmation from "./Components/AuthComponents/SignupConfirmation";
 import Browse from "./Components/Browse/Browse";
 import DetailView from "./Components/Browse/DetailView";
 import Footer from "./Components/Footer";
@@ -20,9 +22,6 @@ import TnC from "./Components/Legal/TnC";
 import NavBar from "./Components/NavBar";
 import NotFound from "./Components/NotFound";
 import { useAuth } from "./Context/AuthProv";
-import DashHome from "./Components/AdminDashboard/DashHome";
-import MailValidation from "./Components/AuthComponents/MailValidation";
-import SignupConfirmation from "./Components/AuthComponents/SignupConfirmation";
 
 function App() {
 	const { loading, loggedIn } = useAuth();
