@@ -55,7 +55,7 @@ function Showcase() {
 							<Button
 								radius="full"
 								color="warning"
-								onClick={() => nav("/browse/dogs")}
+								onClick={() => nav("/browse/dog")}
 								className="mb-2 w-fit px-6 self-end text-white font-semibold"
 							>
 								Zu den Hunden
@@ -67,7 +67,7 @@ function Showcase() {
 							<Button
 								radius="full"
 								color="warning"
-								onClick={() => nav("/browse/cats")}
+								onClick={() => nav("/browse/cat")}
 								className="mb-2 w-fit px-6 self-end text-white font-semibold"
 							>
 								Zu den Katzen
